@@ -1,106 +1,58 @@
-// /**
-//  * Temporary in-memory employee data.
-//  * In a real-world scenario, this would be replaced with API calls to a backend server.
-//  */
-// let employees = [
-//   { id: 1, name: "Akshay", role: "Software Developer", department: "Information Technology" },
-//   { id: 2, name: "Rohit Sharma", role: "Manager", department: "HR" },
-// ];
+/**
+ * Employee Service
+ * ----------------
+ * Handles all CRUD operations (Create, Read, Update, Delete)
+ * by communicating with the backend API (MongoDB via Express).
+ */
 
-// /**
-//  * Fetch all employees
-//  * @returns {Array} Array of employee objects
-//  */
-// export const getEmployees = () => {
-//   return employees;
-// };
-
-// /**
-//  * Add a new employee
-//  * Generates a unique ID using timestamp and adds to employee list
-//  * @param {Object} employee - Employee details { name, role, department }
-//  * @returns {Array} Updated list of employees including the new employee
-//  */
-// export const addEmployee = (employee) => {
-//   const newEmp = { ...employee, id: Date.now() }; // Using timestamp as unique ID
-//   employees.push(newEmp);
-//   return [...employees]; // Return a new array to trigger React state updates
-// };
-
-// /**
-//  * Update an existing employee
-//  * Finds the employee by ID and updates their data
-//  * @param {number} id - ID of the employee to update
-//  * @param {Object} updatedData - Updated employee fields { name, role, department }
-//  * @returns {Array} Updated employee list
-//  */
-// export const updateEmployee = (id, updatedData) => {
-//   employees = employees.map((emp) =>
-//     emp.id === id ? { ...emp, ...updatedData } : emp
-//   );
-//   return [...employees]; // Return new array for state consistency
-// };
-
-// /**
-//  * Delete an employee
-//  * Removes an employee from the list by their ID
-//  * @param {number} id - ID of the employee to delete
-//  * @returns {Array} Updated employee list after deletion
-//  */
-// export const deleteEmployee = (id) => {
-//   employees = employees.filter((emp) => emp.id !== id);
-//   return [...employees]; // Return new array to reflect state change
-// };
-
-
-
-
-const EMPLOYEE_KEY = "employees";
+const API_URL = "http://localhost:2209/api/employees";
 
 /**
- * Get all employees
- * @returns {Array} Array of employee objects
+ * Fetch all employees from API
+ * @async
+ * @returns {Promise<Array>} - List of employees from backend
  */
-export const getEmployees = () => {
-  return JSON.parse(localStorage.getItem(EMPLOYEE_KEY)) || [];
+export const getEmployees = async () => {
+  const res = await fetch(API_URL);
+  return res.json();
 };
 
 /**
- * Add a new employee
- * @param {Object} employee - { name, role, department }
- * @returns {Array} Updated employee list
+ * Add a new employee to backend
+ * @async
+ * @param {Object} employee - Employee data (name, role, department)
+ * @returns {Promise<Object>} - Newly created employee object
  */
-export const addEmployee = (employee) => {
-  const employees = getEmployees();
-  const newEmp = { ...employee, id: Date.now() }; // unique ID using timestamp
-  employees.push(newEmp);
-  localStorage.setItem(EMPLOYEE_KEY, JSON.stringify(employees));
-  return employees;
+export const addEmployee = async (employee) => {
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(employee),
+  });
+  return res.json();
 };
 
 /**
- * Update existing employee
- * @param {number} id - Employee ID to update
- * @param {Object} updatedData - { name, role, department }
- * @returns {Array} Updated employee list
+ * Update an existing employee
+ * @async
+ * @param {string} id - Employee ID (_id from MongoDB)
+ * @param {Object} updatedData - Updated employee fields
+ * @returns {Promise<void>} - No return, operation confirmation
  */
-export const updateEmployee = (id, updatedData) => {
-  let employees = getEmployees();
-  employees = employees.map((emp) =>
-    emp.id === id ? { ...emp, ...updatedData } : emp
-  );
-  localStorage.setItem(EMPLOYEE_KEY, JSON.stringify(employees));
-  return employees;
+export const updateEmployee = async (id, updatedData) => {
+  await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedData),
+  });
 };
 
 /**
- * Delete employee
- * @param {number} id - Employee ID to delete
- * @returns {Array} Updated employee list
+ * Delete an employee by ID
+ * @async
+ * @param {string} id - Employee ID (_id from MongoDB)
+ * @returns {Promise<void>} - No return, operation confirmation
  */
-export const deleteEmployee = (id) => {
-  let employees = getEmployees();
-  employees = employees.filter((emp) => emp.id !== id);
-  localStorage.setItem(EMPLOYEE_KEY, JSON.stringify(employees));
-  return employees;
+export const deleteEmployee = async (id) => {
+  await fetch(`${API_URL}/${id}`, { method: "DELETE" });
 };

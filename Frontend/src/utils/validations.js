@@ -8,15 +8,33 @@
  * @returns {string|null} - Returns error message string if validation fails, otherwise null
  */
 export const validateEmployee = (data) => {
-  // Validate Name: must not be empty or whitespace only
-  if (!data.name || data.name.trim() === "") return "Name is required";
+  // Common regex: only alphabets + spaces allowed
+  const alphaRegex = /^[A-Za-z\s]+$/;
 
-  // Validate Role: must not be empty or whitespace only
-  if (!data.role || data.role.trim() === "") return "Role is required";
+  // Validate Name
+  if (!data.name || data.name.trim() === "") {
+    return "Name is required";
+  }
+  if (!alphaRegex.test(data.name.trim())) {
+    return "Name must contain only letters and spaces";
+  }
 
-  // Validate Department: must not be empty or whitespace only
-  if (!data.department || data.department.trim() === "") return "Department is required";
+  // Validate Role
+  if (!data.role || data.role.trim() === "") {
+    return "Role is required";
+  }
+  if (!alphaRegex.test(data.role.trim())) {
+    return "Role must contain only letters and spaces";
+  }
 
-  // If all validations pass, return null
+  // Validate Department
+  if (!data.department || data.department.trim() === "") {
+    return "Department is required";
+  }
+  if (!alphaRegex.test(data.department.trim())) {
+    return "Department must contain only letters and spaces";
+  }
+
+  // If all validations pass
   return null;
 };
