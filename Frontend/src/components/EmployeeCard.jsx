@@ -1,3 +1,5 @@
+import '../assets/styles/employee-card.css';
+
 const EmployeeCard = ({ employee, onEdit, onDelete }) => {
   return (
     <div className="employee-card">

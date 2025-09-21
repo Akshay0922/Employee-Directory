@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { validateEmployee } from "../utils/validations";
 
+import '../assets/styles/employee-form.css';
+
 const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
   const [formData, setFormData] = useState({ name: "", role: "", department: "" });
   const [error, setError] = useState("");
 
-  // Pre-fill form when editing
   useEffect(() => {
     if (editingEmployee) {
       setFormData(editingEmployee);

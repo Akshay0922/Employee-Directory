@@ -1,0 +1,29 @@
+.main-footer {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #330968, #A23BA6);
+}
+
+.icon-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    height: 31%;
+    width: 22%;
+    border-radius: 6px;
+    background-color: white;
+}
+
+.footer-icon{
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+}
+
+.penthara-logo-footer {
+    height: auto;
+    width: 100px;
+}

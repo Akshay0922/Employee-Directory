@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main-page{
+    padding: 40px;
+}
+
+.container {
+  max-width: 999px;
+  margin: auto;
+  padding-bottom: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  /* background: #f8f9fa; */
+}

@@ -1,5 +1,7 @@
 import EmployeeCard from "./EmployeeCard";
 
+import '../assets/styles/employee-list.css';
+
 const EmployeeList = ({ employees, onEdit, onDelete }) => {
   if (employees.length === 0) {
     return <p style={{textAlign: "center"}}>No employees found.</p>;

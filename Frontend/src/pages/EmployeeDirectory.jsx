@@ -2,12 +2,9 @@ import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import EmployeeList from "../components/EmployeeList";
 import EmployeeForm from "../components/EmployeeForm";
-import {
-    getEmployees,
-    addEmployee,
-    updateEmployee,
-    deleteEmployee,
-} from "../services/employeeService";
+import { getEmployees, addEmployee, updateEmployee, deleteEmployee } from "../services/employeeService";
+
+import '../assets/styles/styles.css';
 
 const EmployeeDirectory = () => {
     const [employees, setEmployees] = useState(getEmployees());
@@ -50,10 +47,12 @@ const EmployeeDirectory = () => {
         <>
             <section className="main-page">
                 <div className="container">
-                    <h1 className="title">Employee Directory</h1>
 
                     {/* Search */}
-                    <SearchBar searchQuery={searchTerm} setSearchQuery={setSearchTerm} />
+                    <SearchBar
+                        searchQuery={searchTerm}
+                        setSearchQuery={setSearchTerm}
+                    />
 
                     {/* Add / Edit Form */}
                     <EmployeeForm

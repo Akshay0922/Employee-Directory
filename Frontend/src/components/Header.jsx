@@ -1,6 +1,6 @@
-import PentharaLogo from '../assets/Penthara-Logo.svg';
+import PentharaLogo from '../assets/images/Penthara-Logo.svg';
 
-import '../assets/styles.css';
+import '../assets/styles/header.css';
 
 const Header = () => {
     return (

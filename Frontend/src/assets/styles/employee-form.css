@@ -1,0 +1,103 @@
+.employee-form {
+  width: 100%;
+  margin: 0 auto 40px auto;
+  border: 1px solid #e6e6e6;
+  padding: 10px 30px 30px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.employee-form h2 {
+  margin-bottom: 18px;
+  font-size: 20px;
+  color: #330968;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: -6px;
+  margin-bottom: 8px;
+}
+
+.employee-form input {
+  width: 100%;
+  max-width: 100%;
+  height: 45px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+  padding: 0 12px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.employee-form input:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.2);
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.btn {
+  padding: 11px 22px;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.submit-btn {
+  background: linear-gradient(to right, #330968, #A23BA6);
+  color: white;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(to right, #1f0550, #822d8f);
+}
+
+.submit-btn:active{
+  transform: scale(0.96);
+}
+
+.cancel-btn {
+  background: #6c757d;
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background: #5a6268;
+}
+
+.edit-btn {
+  background: linear-gradient(to right, #330968, #A23BA6);
+  color: #fff;
+}
+
+.edit-btn:hover {
+  background: linear-gradient(to right, #1f0550, #822d8f);
+}
+
+.delete-btn {
+  background: #eb2b3e;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background: #b02a37;
+}

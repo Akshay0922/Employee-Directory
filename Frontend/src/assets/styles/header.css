@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main-header {
+    width: 100%;
+    height: 22vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #330968, #A23BA6);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+}
+
+.penthara-logo {
+    height: auto;
+    width: 100px;
+    padding: 11px;
+    background-color: white;
+}
+
+.header-content {
+    color: white;
+    font-size: 3.1rem;
+    font-weight: 500;
+    margin-left: 150px;
+}
