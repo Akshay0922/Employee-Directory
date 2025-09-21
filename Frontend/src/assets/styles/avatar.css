@@ -1,0 +1,51 @@
+/* 
+ * Avatar Wrapper
+ * Circular container for showing first letter of name.
+ * Flex layout centers content both vertically and horizontally.
+ */
+.avatar {
+    width: 50px;               /* default width */
+    height: 50px;              /* default height */
+    border-radius: 50%;        /* make it perfectly circular */
+    margin-bottom: 11px;       /* space below avatar */
+    display: flex;             /* flex layout */
+    align-items: center;       /* center vertically */
+    justify-content: center;   /* center horizontally */
+    color: white;              /* text color for initials */
+    font-weight: bold;         /* bold initials */
+    font-size: 18px;           /* readable font size */
+    flex-shrink: 0;            /* prevent shrinking in flex containers */
+    background-color: #330968; /* default background color */
+    transition: all 0.3s ease; /* smooth transitions */
+}
+
+/* ===========================
+   Responsive Media Queries
+   =========================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) {
+    .avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+    .avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+}

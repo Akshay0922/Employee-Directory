@@ -1,7 +1,3 @@
-/* ============================================
-   Employee Card Styles
-   ============================================ */
-
 /**
  * Container for individual employee cards.
  * Displays employee information with a shadow and rounded corners.
@@ -14,6 +10,8 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* subtle shadow for depth */
   display: flex; /* flex layout for vertical alignment */
   flex-direction: column; /* stack child elements vertically */
+  align-items: center;
+  text-align: center;
   gap: 11px; /* space between child elements */
   transition: transform 0.25s ease, box-shadow 0.25s ease; /* smooth hover effects */
 }
@@ -25,6 +23,17 @@
 .employee-card:hover {
   transform: translateY(-5px); /* lift card by 5px */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* deeper shadow on hover */
+}
+
+/* 
+ * Avatar Container
+ * Wrapper for the avatar to center it within any parent element.
+ * Uses flexbox to center both vertically and horizontally.
+ */
+.avatar-container {
+    display: flex;            /* enable flex layout */
+    align-items: center;      /* center content vertically */
+    justify-content: center;  /* center content horizontally */
 }
 
 /**

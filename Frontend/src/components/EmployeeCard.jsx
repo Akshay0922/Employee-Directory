@@ -1,23 +1,29 @@
-// Import Employee Card specific CSS
+// Import CSS specific to Employee Card styling
 import '../assets/styles/employee-card.css';
+
+import Avatar from './Avatar';
 
 /**
  * EmployeeCard Component
  * 
- * Displays individual employee details in a card layout.
- * Includes Edit and Delete buttons for user actions.
+ * Renders an individual employee's information in a card layout.
+ * Shows name, role, department, and an avatar.
+ * Provides Edit and Delete buttons for user actions.
  * 
  * @param {Object} props - Component props
- * @param {Object} props.employee - Employee data (name, role, department, id)
- * @param {Function} props.onEdit - Callback function to handle edit action
- * @param {Function} props.onDelete - Callback function to handle delete action
+ * @param {Object} props.employee - Employee data { id, name, role, department }
+ * @param {Function} props.onEdit - Callback to trigger editing this employee
+ * @param {Function} props.onDelete - Callback to trigger deletion by employee ID
  */
 const EmployeeCard = ({ employee, onEdit, onDelete }) => {
   return (
     <div className="employee-card">
-      
-      {/* Employee Information */}
-      <div>
+
+      {/* Employee Information Section */}
+      <div className="employee-info">
+        {/* Avatar showing first letter of employee name */}
+        <div className='avatar-container'><Avatar name={employee.name} /> </div>
+
         {/* Employee Name */}
         <h2>{employee.name}</h2>
 
@@ -28,7 +34,7 @@ const EmployeeCard = ({ employee, onEdit, onDelete }) => {
         <p className="department">{employee.department}</p>
       </div>
 
-      {/* Action Buttons */}
+      {/* Action Buttons Section */}
       <div className="card-actions">
         {/* Edit Button */}
         <button
