@@ -2,99 +2,167 @@
    Employee Directory Search Bar Styles
    ============================================ */
 
-/**
- * Search Wrapper
- * Container for search input and search button/icon.
- * Flex layout aligns elements to the right with spacing.
- */
+/* 
+   Search Wrapper
+   - Container for the search input and icon/button
+   - Flex layout aligns items horizontally and vertically
+   - Responsive padding included for small screens
+*/
 .search-wrapper {
-    display: flex; /* flex layout for icon + input */
-    justify-content: flex-end; /* align to the right */
-    align-items: center; /* vertically center items */
-    width: 100%; /* full width */
-    height: 50px; /* fixed height */
-    position: relative; /* for absolute positioning if needed */
-    gap: 11px; /* spacing between children */
-    margin-bottom: 22px; /* spacing from other elements */
+    display: flex;
+    justify-content: flex-end; /* align items to the right by default */
+    align-items: center;       /* vertically center items */
+    width: 100%;               /* full width of parent */
+    height: 50px;              /* fixed height */
+    position: relative;        /* allows absolute positioning of child elements if needed */
+    gap: 11px;                 /* spacing between child elements */
+    margin-bottom: 22px;       /* spacing from elements below */
+    padding: 0 10px;           /* horizontal padding for small screens */
+    box-sizing: border-box;    /* include padding in width */
 }
 
-/**
- * Search Icon Circle
- * Circular button with gradient background.
- * Hover and active states for user interaction feedback.
- */
+/* 
+   Search Icon Circle
+   - Circular button containing search icon
+   - Gradient background with hover & active states
+   - Uses flex to center the icon inside the circle
+*/
 .search-icon-circle {
-    width: 45px; /* width of the circle */
-    height: 45px; /* height of the circle */
-    border-radius: 50%; /* make it circular */
-    background: linear-gradient(to right, #330968, #A23BA6); /* gradient */
-    border: 1px solid #ccc; /* subtle border */
-    display: flex; /* flex to center icon */
-    justify-content: center; /* center horizontally */
-    align-items: center; /* center vertically */
-    cursor: pointer; /* pointer on hover */
-    transition: box-shadow 0.3s ease; /* smooth hover effect */
-    color: white; /* icon color */
-    z-index: 2; /* stay above other elements */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; /* fully circular */
+    background: linear-gradient(to right, #330968, #A23BA6);
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;  /* horizontal centering */
+    align-items: center;      /* vertical centering */
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.2s ease; /* smooth interaction effects */
+    color: white;             /* icon color */
+    z-index: 2;               /* ensure it stays above input when expanded */
 }
 
 .search-icon-circle:hover {
-    background: linear-gradient(to right, #1f0550, #822d8f); /* hover gradient */
+    background: linear-gradient(to right, #1f0550, #822d8f); /* darker on hover */
 }
 
 .search-icon-circle:active {
-    transform: scale(0.96); /* subtle click effect */
+    transform: scale(0.96); /* subtle click animation */
 }
 
-/**
- * Search Slide
- * Hidden input container that expands when 'open' class is added.
- */
+/* 
+   Search Slide
+   - Hidden input container that expands on `.open` class
+   - Rounded capsule shape with border
+   - Smooth transition for width and opacity
+*/
 .search-slide {
-    display: flex; /* flex layout for input + clear button */
-    align-items: center; /* vertically center input */
-    height: 45px; /* same height as icon */
-    border-radius: 50px; /* rounded capsule shape */
-    background: white; /* background of input field */
-    border: 1px solid #330968; /* border color */
-    overflow: hidden; /* hide overflowing content */
-    width: 0; /* hidden by default */
-    opacity: 0; /* hidden by default */
-    transition: all 0.4s ease; /* smooth animation */
+    display: flex;
+    align-items: center;
+    height: 45px;
+    border-radius: 50px;
+    background: white;
+    border: 1px solid #330968;
+    overflow: hidden; /* hide content when collapsed */
+    width: 0;         /* hidden by default */
+    opacity: 0;       /* hidden by default */
+    transition: all 0.4s ease;
 }
 
+/* Open state for the search slide */
 .search-slide.open {
-    width: 250px; /* expanded width when active */
-    opacity: 1; /* fully visible */
-    padding: 0 10px; /* padding inside input container */
+    width: 250px;    /* expanded width */
+    opacity: 1;      /* visible */
+    padding: 0 10px; /* inner spacing */
 }
 
-/**
- * Search Input Field
- * Flexible input area inside search slide.
- */
+/* 
+   Search Input Field
+   - Flexible input taking up remaining space in slide
+   - No border or outline for cleaner look
+   - Transparent background for smooth integration
+*/
 .search-input {
-    flex: 1; /* take up remaining space */
-    border: none; /* remove default border */
-    outline: none; /* remove outline */
-    font-size: 15px; /* readable font size */
-    padding: 8px 10px; /* inner spacing */
-    background: transparent; /* transparent background */
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    padding: 8px 10px;
+    background: transparent;
 }
 
-/**
- * Clear Button
- * Button to clear input inside search slide.
- */
+/* 
+   Clear Button
+   - Optional button to clear input
+   - Transparent background, hover color change for feedback
+*/
 .clear-btn {
-    border: none; /* no border */
-    background: transparent; /* transparent background */
-    cursor: pointer; /* pointer on hover */
-    color: #888; /* default color */
-    margin-left: 5px; /* spacing from input */
-    transition: color 0.2s; /* smooth color change */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #888;
+    margin-left: 5px;       /* spacing from input */
+    transition: color 0.2s; /* smooth hover effect */
 }
 
 .clear-btn:hover {
     color: #000; /* darker on hover */
+}
+
+/* ============================================
+   Responsive Media Queries
+   ============================================ */
+
+/* Tablets: width ≤ 1024px */
+@media (max-width: 1024px) {
+    .search-slide.open {
+        width: 210px; /* slightly smaller on tablet */
+    }
+
+    .search-input {
+        font-size: 14px; /* reduce font size */
+    }
+
+    .search-icon-circle {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Mobile Landscape: width ≤ 768px */
+@media (max-width: 768px) {
+    .search-slide.open {
+        width: 210px; /* same as tablet for consistency */
+    }
+
+    .search-input {
+        font-size: 13px;
+        padding: 6px 8px; /* reduce padding */
+    }
+
+    .search-icon-circle {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* Mobile Portrait: width ≤ 480px */
+@media (max-width: 480px) {
+    .search-wrapper {
+        justify-content: center; /* center the search bar on very small screens */
+    }
+
+    .search-slide.open {
+        width: 180px; /* smaller width to fit mobile screen */
+    }
+
+    .search-input {
+        font-size: 12px;
+        padding: 5px 6px;
+    }
+
+    .search-icon-circle {
+        width: 35px;
+        height: 35px;
+    }
 }
