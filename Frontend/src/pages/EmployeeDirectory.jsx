@@ -14,23 +14,29 @@ import '../assets/styles/styles.css';
 
 /**
  * EmployeeDirectory Component
- * 
- * Main page for managing employees.
- * Includes search, add/edit form, and employee list.
- * Handles all frontend CRUD operations via local state and services.
+ *
+ * Main container for managing employees.
+ * - Provides a searchable employee list.
+ * - Supports adding, editing, and deleting employees.
+ * - Integrates with localStorage via service functions.
+ *
+ * @component
  */
 const EmployeeDirectory = () => {
-    // State for all employees
+    /** State: All employees (fetched from localStorage on mount) */
     const [employees, setEmployees] = useState(getEmployees());
 
-    // State for search input
+    /** State: Current search input value */
     const [searchTerm, setSearchTerm] = useState("");
 
-    // State for currently editing employee
+    /** State: Employee object currently being edited */
     const [selectedEmployee, setSelectedEmployee] = useState(null);
 
-    // State to control form visibility
+    /** State: Controls visibility of the employee form */
     const [isFormVisible, setIsFormVisible] = useState(true);
+
+    /** State: Controls expansion of the search bar */
+    const [isSearchExpanded, setIsSearchExpanded] = useState(false);
 
     // Load employees from localStorage on component mount
     useEffect(() => {
@@ -38,34 +44,44 @@ const EmployeeDirectory = () => {
     }, []);
 
     /**
-     * Handles saving an employee
-     * Adds new employee or updates existing one
-     * @param {Object} employee - Employee data from the form
+     * Handles saving an employee (add or update).
+     * - If editing, updates existing employee.
+     * - If adding, appends a new employee.
+     *
+     * @param {Object} employee - Employee data from form.
      */
     const handleSave = (employee) => {
         if (selectedEmployee) {
             // Update existing employee
             const updatedList = updateEmployee(selectedEmployee.id, employee);
             setEmployees([...updatedList]);
-            setSelectedEmployee(null); // Clear selection after edit
+            setSelectedEmployee(null); // Reset selection after edit
         } else {
             // Add new employee
-            const updatedList = addEmployee(employee); // Ensure addEmployee returns updated array
+            const updatedList = addEmployee(employee);
             setEmployees([...updatedList]);
         }
-        setIsFormVisible(true); // show form after save
+
+        // Ensure form is visible after save
+        setIsFormVisible(true);
     };
 
     /**
-     * Handles editing an employee
-     * Sets the selected employee to populate the form
-     * @param {Object} employee - Employee object to edit
+     * Handles editing an employee.
+     * - Populates form with selected employee data.
+     * - Collapses the search bar when editing begins.
+     *
+     * @param {Object} employee - Employee object to edit.
      */
     const handleEdit = (employee) => {
         setSelectedEmployee(employee);
-        setIsFormVisible(true); // show form when editing
+        setIsFormVisible(true); // Always show form when editing
 
-        // Scroll to top smoothly
+        // Collapse search bar and clear input
+        setIsSearchExpanded(false);
+        setSearchTerm("");
+
+        // Scroll to top for better UX
         window.scrollTo({
             top: 0,
             behavior: "smooth"
@@ -73,17 +89,18 @@ const EmployeeDirectory = () => {
     };
 
     /**
-     * Handles deleting an employee
-     * Updates state after removal
-     * @param {string | number} id - Employee ID to delete
+     * Handles deleting an employee.
+     * - Removes employee from state and localStorage.
+     *
+     * @param {string|number} id - Employee ID to delete.
      */
     const handleDelete = (id) => {
         setEmployees(deleteEmployee(id));
     };
 
     /**
-     * Filters employees based on search input
-     * Matches by name or department (case-insensitive)
+     * Filters employees based on current search term.
+     * - Matches by name or department (case-insensitive).
      */
     const filteredEmployees = employees.filter(
         (emp) =>
@@ -92,36 +109,37 @@ const EmployeeDirectory = () => {
     );
 
     return (
-        <>
-            <section className="main-page">
-                <div className="container">
+        <section className="main-page">
+            <div className="container">
 
-                    {/* Search Bar Component */}
-                    <SearchBar
-                        searchQuery={searchTerm}
-                        setSearchQuery={setSearchTerm}
-                        onToggle={(expanded) => setIsFormVisible(!expanded)} // hide/show form on toggle
-                    />
+                {/* Search Bar (collapsible) */}
+                <SearchBar
+                    searchQuery={searchTerm}
+                    setSearchQuery={setSearchTerm}
+                    expanded={isSearchExpanded}
+                    setExpanded={(exp) => {
+                        setIsSearchExpanded(exp);
+                        setIsFormVisible(!exp); // Hide form if search bar is expanded
+                    }}
+                />
 
-                    {/* Add / Edit Employee Form (conditionally rendered) */}
-                    {/* Form wrapper with smooth show/hide */}
-                    <div className={`form-wrapper ${isFormVisible ? "show" : "hide"}`}>
-                        <EmployeeForm
-                            onSubmit={handleSave}
-                            editingEmployee={selectedEmployee}
-                            onCancel={() => setSelectedEmployee(null)}
-                        />
-                    </div>
-
-                    {/* Employee List Component */}
-                    <EmployeeList
-                        employees={filteredEmployees}
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
+                {/* Employee Form (add/edit) wrapped in show/hide animation */}
+                <div className={`form-wrapper ${isFormVisible ? "show" : "hide"}`}>
+                    <EmployeeForm
+                        onSubmit={handleSave}
+                        editingEmployee={selectedEmployee}
+                        onCancel={() => setSelectedEmployee(null)}
                     />
                 </div>
-            </section>
-        </>
+
+                {/* Employee List */}
+                <EmployeeList
+                    employees={filteredEmployees}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                />
+            </div>
+        </section>
     );
 };
 

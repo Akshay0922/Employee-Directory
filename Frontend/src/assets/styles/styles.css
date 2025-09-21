@@ -54,3 +54,30 @@ body {
   opacity: 1; /* Fully visible */
   margin-bottom: 20px; /* Restore spacing below the form */
 }
+
+/* =========================================================
+   Custom Scrollbar Styling
+   Applies consistent scrollbar design across browsers
+   ========================================================= */
+
+/* ---------- Chrome, Edge, Safari ---------- */
+::-webkit-scrollbar {
+  width: 14px; /* Set scrollbar width */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #330968; /* Thumb color */
+  border-radius: 50px;       /* Rounded edges for smooth look */
+  border: 3px solid #fff;    /* Creates spacing effect around thumb */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fff;    /* Track (background) color */
+  border-radius: 6px;        /* Slight rounding for track edges */
+}
+
+/* ---------- Firefox ---------- */
+* {
+  scrollbar-width: auto;                /* Default width with custom colors */
+  scrollbar-color: #330968 #fff;        /* thumb color | track color */
+}
