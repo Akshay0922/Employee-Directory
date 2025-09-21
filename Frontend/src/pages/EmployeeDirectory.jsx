@@ -15,79 +15,66 @@ import '../assets/styles/styles.css';
 /**
  * EmployeeDirectory Component
  * 
- * This is the main container for the Employee Directory page.
- * It manages the employee list, search functionality, and add/edit/delete operations.
- * Uses a backend API (via employeeService) for CRUD operations.
+ * Main page for managing employees.
+ * Includes search, add/edit form, and employee list.
+ * Handles all frontend CRUD operations via local state and services.
  */
 const EmployeeDirectory = () => {
-    /** State: List of employees fetched from backend */
-    const [employees, setEmployees] = useState([]);
+    // State for all employees
+    const [employees, setEmployees] = useState(getEmployees());
 
-    /** State: Search term entered by user */
+    // State for search input
     const [searchTerm, setSearchTerm] = useState("");
 
-    /** State: Currently selected employee for editing */
+    // State for currently editing employee
     const [selectedEmployee, setSelectedEmployee] = useState(null);
 
-    /**
-     * Fetch all employees on initial render
-     * Equivalent to componentDidMount()
-     */
+    // Load employees from localStorage on component mount
     useEffect(() => {
-        const fetchEmployees = async () => {
-            const data = await getEmployees();
-            setEmployees(data);
-        };
-        fetchEmployees();
+        setEmployees(getEmployees());
     }, []);
 
+
     /**
-     * Save Handler (Add or Update employee)
-     * - If editing, update the existing employee
-     * - If adding, create a new employee
-     * After save, refresh list from API
-     * 
-     * @param {Object} employee - Employee form data (name, role, department)
+     * Handles saving an employee
+     * Adds new employee or updates existing one
+     * @param {Object} employee - Employee data from the form
      */
-    const handleSave = async (employee) => {
+
+    const handleSave = (employee) => {
         if (selectedEmployee) {
             // Update existing employee
-            await updateEmployee(selectedEmployee._id, employee);
-            const data = await getEmployees();
-            setEmployees(data);
+            const updatedList = updateEmployee(selectedEmployee.id, employee);
+            setEmployees([...updatedList]);
             setSelectedEmployee(null); // Clear selection after edit
         } else {
             // Add new employee
-            await addEmployee(employee);
-            const data = await getEmployees();
-            setEmployees(data);
+            const updatedList = addEmployee(employee); // Ensure addEmployee returns updated array
+            setEmployees([...updatedList]);
         }
     };
 
     /**
-     * Edit Handler
-     * Sets selectedEmployee so the form is pre-filled for editing
-     * 
-     * @param {Object} employee - Employee object to be edited
+     * Handles editing an employee
+     * Sets the selected employee to populate the form
+     * @param {Object} employee - Employee object to edit
      */
     const handleEdit = (employee) => {
         setSelectedEmployee(employee);
     };
 
     /**
-     * Delete Handler
-     * Removes employee from backend and refreshes list
-     * 
-     * @param {string} id - Employee ID (_id from MongoDB)
+     * Handles deleting an employee
+     * Updates state after removal
+     * @param {string | number} id - Employee ID to delete
      */
-    const handleDelete = async (id) => {
-        await deleteEmployee(id);
-        const data = await getEmployees();
-        setEmployees(data);
+
+    const handleDelete = (id) => {
+        setEmployees(deleteEmployee(id));
     };
 
     /**
-     * Filter employees based on search input
+     * Filters employees based on search input
      * Matches by name or department (case-insensitive)
      */
     const filteredEmployees = employees.filter(
@@ -101,7 +88,7 @@ const EmployeeDirectory = () => {
             <section className="main-page">
                 <div className="container">
 
-                    {/* Search Bar for filtering employees */}
+                    {/* Search Bar Component */}
                     <SearchBar
                         searchQuery={searchTerm}
                         setSearchQuery={setSearchTerm}
@@ -114,7 +101,7 @@ const EmployeeDirectory = () => {
                         onCancel={() => setSelectedEmployee(null)}
                     />
 
-                    {/* Employee List Display */}
+                    {/* Employee List Component */}
                     <EmployeeList
                         employees={filteredEmployees}
                         onEdit={handleEdit}

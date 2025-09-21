@@ -1,58 +1,49 @@
-/**
- * Employee Service
- * ----------------
- * Handles all CRUD operations (Create, Read, Update, Delete)
- * by communicating with the backend API (MongoDB via Express).
- */
-
-const API_URL = "http://localhost:2209/api/employees";
+const EMPLOYEE_KEY = "employees";
 
 /**
- * Fetch all employees from API
- * @async
- * @returns {Promise<Array>} - List of employees from backend
+ * Get all employees
+ * @returns {Array} Array of employee objects
  */
-export const getEmployees = async () => {
-  const res = await fetch(API_URL);
-  return res.json();
+export const getEmployees = () => {
+  return JSON.parse(localStorage.getItem(EMPLOYEE_KEY)) || [];
 };
 
 /**
- * Add a new employee to backend
- * @async
- * @param {Object} employee - Employee data (name, role, department)
- * @returns {Promise<Object>} - Newly created employee object
+ * Add a new employee
+ * @param {Object} employee - { name, role, department }
+ * @returns {Array} Updated employee list
  */
-export const addEmployee = async (employee) => {
-  const res = await fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(employee),
-  });
-  return res.json();
+export const addEmployee = (employee) => {
+  const employees = getEmployees();
+  const newEmp = { ...employee, id: Date.now() }; // unique ID using timestamp
+  employees.push(newEmp);
+  localStorage.setItem(EMPLOYEE_KEY, JSON.stringify(employees));
+  return employees;
 };
 
 /**
- * Update an existing employee
- * @async
- * @param {string} id - Employee ID (_id from MongoDB)
- * @param {Object} updatedData - Updated employee fields
- * @returns {Promise<void>} - No return, operation confirmation
+ * Update existing employee
+ * @param {number} id - Employee ID to update
+ * @param {Object} updatedData - { name, role, department }
+ * @returns {Array} Updated employee list
  */
-export const updateEmployee = async (id, updatedData) => {
-  await fetch(`${API_URL}/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedData),
-  });
+export const updateEmployee = (id, updatedData) => {
+  let employees = getEmployees();
+  employees = employees.map((emp) =>
+    emp.id === id ? { ...emp, ...updatedData } : emp
+  );
+  localStorage.setItem(EMPLOYEE_KEY, JSON.stringify(employees));
+  return employees;
 };
 
 /**
- * Delete an employee by ID
- * @async
- * @param {string} id - Employee ID (_id from MongoDB)
- * @returns {Promise<void>} - No return, operation confirmation
+ * Delete employee
+ * @param {number} id - Employee ID to delete
+ * @returns {Array} Updated employee list
  */
-export const deleteEmployee = async (id) => {
-  await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+export const deleteEmployee = (id) => {
+  let employees = getEmployees();
+  employees = employees.filter((emp) => emp.id !== id);
+  localStorage.setItem(EMPLOYEE_KEY, JSON.stringify(employees));
+  return employees;
 };
