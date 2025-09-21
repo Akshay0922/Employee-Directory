@@ -21,8 +21,8 @@
  * Slight lift and stronger shadow for visual feedback.
  */
 .employee-card:hover {
-  transform: translateY(-5px); /* lift card by 5px */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* deeper shadow on hover */
+  transform: translateY(-6px); /* lift card by 6px */
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1); /* deeper shadow on hover */
 }
 
 /* 
