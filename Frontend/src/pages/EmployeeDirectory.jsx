@@ -29,18 +29,19 @@ const EmployeeDirectory = () => {
     // State for currently editing employee
     const [selectedEmployee, setSelectedEmployee] = useState(null);
 
+    // State to control form visibility
+    const [isFormVisible, setIsFormVisible] = useState(true);
+
     // Load employees from localStorage on component mount
     useEffect(() => {
         setEmployees(getEmployees());
     }, []);
-
 
     /**
      * Handles saving an employee
      * Adds new employee or updates existing one
      * @param {Object} employee - Employee data from the form
      */
-
     const handleSave = (employee) => {
         if (selectedEmployee) {
             // Update existing employee
@@ -52,6 +53,7 @@ const EmployeeDirectory = () => {
             const updatedList = addEmployee(employee); // Ensure addEmployee returns updated array
             setEmployees([...updatedList]);
         }
+        setIsFormVisible(true); // show form after save
     };
 
     /**
@@ -61,6 +63,13 @@ const EmployeeDirectory = () => {
      */
     const handleEdit = (employee) => {
         setSelectedEmployee(employee);
+        setIsFormVisible(true); // show form when editing
+
+        // Scroll to top smoothly
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     };
 
     /**
@@ -68,7 +77,6 @@ const EmployeeDirectory = () => {
      * Updates state after removal
      * @param {string | number} id - Employee ID to delete
      */
-
     const handleDelete = (id) => {
         setEmployees(deleteEmployee(id));
     };
@@ -92,14 +100,18 @@ const EmployeeDirectory = () => {
                     <SearchBar
                         searchQuery={searchTerm}
                         setSearchQuery={setSearchTerm}
+                        onToggle={(expanded) => setIsFormVisible(!expanded)} // hide/show form on toggle
                     />
 
-                    {/* Add / Edit Employee Form */}
-                    <EmployeeForm
-                        onSubmit={handleSave}
-                        editingEmployee={selectedEmployee}
-                        onCancel={() => setSelectedEmployee(null)}
-                    />
+                    {/* Add / Edit Employee Form (conditionally rendered) */}
+                    {/* Form wrapper with smooth show/hide */}
+                    <div className={`form-wrapper ${isFormVisible ? "show" : "hide"}`}>
+                        <EmployeeForm
+                            onSubmit={handleSave}
+                            editingEmployee={selectedEmployee}
+                            onCancel={() => setSelectedEmployee(null)}
+                        />
+                    </div>
 
                     {/* Employee List Component */}
                     <EmployeeList

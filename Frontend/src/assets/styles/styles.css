@@ -31,3 +31,26 @@ body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* fallback font stack */
     color: #333; /* default text color */
 }
+
+/* Wrapper around EmployeeForm to allow smooth show/hide animation */
+.form-wrapper {
+  overflow: hidden; /* Hide overflowing content when collapsing */
+  transition: all 0.4s ease; /* Smooth transition for height, opacity, and margin changes */
+  max-height: 1000px; /* Maximum height when form is fully visible */
+  opacity: 1; /* Fully visible */
+  margin-bottom: 20px; /* Spacing below the form */
+}
+
+/* Hide state for the form wrapper */
+.form-wrapper.hide {
+  max-height: 0; /* Collapse the height */
+  opacity: 0; /* Make it invisible */
+  margin-bottom: 0; /* Remove spacing below the form */
+}
+
+/* Show state for the form wrapper */
+.form-wrapper.show {
+  max-height: 1000px; /* Expand to full height */
+  opacity: 1; /* Fully visible */
+  margin-bottom: 20px; /* Restore spacing below the form */
+}

@@ -16,8 +16,9 @@ import "../assets/styles/search-bar.css";
  * 
  * @param {string} searchQuery - Current search input value
  * @param {function} setSearchQuery - Setter function to update search input
+ * @param {function} onToggle - Callback function when search bar is toggled
  */
-const SearchBar = ({ searchQuery, setSearchQuery }) => {
+const SearchBar = ({ searchQuery, setSearchQuery, onToggle }) => {
   // State to track whether the search input is expanded
   const [expanded, setExpanded] = useState(false);
 
@@ -39,10 +40,17 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
   /**
    * Toggles the expansion/collapse of the search input
    * Clears search input when collapsing
+   * Calls the onToggle callback to notify parent component
    */
   const toggleSearch = () => {
-    setExpanded(!expanded);
-    if (expanded) setSearchQuery("");
+    const newExpanded = !expanded;
+    setExpanded(newExpanded);
+
+    // Clear search input when collapsing
+    if (!newExpanded) setSearchQuery("");
+
+    // Notify parent about search bar state
+    if (onToggle) onToggle(newExpanded);
   };
 
   return (
