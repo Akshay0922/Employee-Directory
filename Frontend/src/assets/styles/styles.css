@@ -1,17 +1,33 @@
+/* ============================================
+   Global Styles
+   ============================================ */
+
+/**
+ * Body
+ * Sets default margin and global font for the entire page.
+ */
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
+    margin: 0; /* remove default browser margin */
+    font-family: 'Poppins', sans-serif; /* global font */
 }
 
-.main-page{
-    padding: 40px;
+/**
+ * Main Page Wrapper
+ * Provides consistent padding around the main content of the page.
+ */
+.main-page {
+    padding: 40px; /* space around the page content */
 }
 
+/**
+ * Container
+ * Centers content, sets maximum width, padding, font, and text color.
+ * Can be used for page sections or card layouts.
+ */
 .container {
-  max-width: 999px;
-  margin: auto;
-  padding-bottom: 40px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-  /* background: #f8f9fa; */
+    max-width: 999px; /* maximum content width */
+    margin: auto; /* center container horizontally */
+    padding-bottom: 40px; /* spacing at the bottom */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* fallback font stack */
+    color: #333; /* default text color */
 }

@@ -1,5 +1,19 @@
+/* ============================================
+   Employee List Container
+   ============================================ */
+
+/**
+ * Container for all employee cards.
+ * Uses CSS Grid to create a responsive layout that adapts to screen size.
+ * Automatically adjusts the number of columns based on available width.
+ */
 .employee-list {
-  display: grid;
+  display: grid; /* enables grid layout for children */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 22px;
+  /**
+   * repeat(auto-fit, minmax(280px, 1fr)):
+   * - auto-fit: automatically fits as many columns as possible
+   * - minmax(280px, 1fr): each column has a minimum width of 280px and grows to fill available space
+   */
+  gap: 22px; /* space between each grid item */
 }

@@ -1,34 +1,120 @@
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-}
+/* ============================================
+   Main Header Styles
+   ============================================ */
 
+/**
+ * Main Header Container
+ * Provides the top navigation/header layout with gradient background,
+ * logo, and title/content aligned using flexbox.
+ */
 .main-header {
-    width: 100%;
-    height: 22vh;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(to right, #330968, #A23BA6);
+    width: 100%; /* full width */
+    height: 20vh; /* relative to viewport height */
+    min-height: 100px; /* ensures visibility on small screens */
+    display: flex; /* flex layout for alignment */
+    align-items: center; /* vertically center children */
+    background: linear-gradient(to right, #330968, #A23BA6); /* gradient background */
+    padding: 0 2%; /* horizontal padding */
+    box-sizing: border-box; /* include padding in width */
 }
 
+/**
+ * Logo Container
+ * Holds the Penthara logo, aligned center both vertically and horizontally.
+ */
 .logo-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20%;
-    height: 100%;
+    width: 20%; /* fixed width relative to header */
+    height: 100%; /* full header height */
+    flex-shrink: 0; /* prevent shrinking on smaller screens */
 }
 
+/**
+ * Penthara Logo
+ * Maintains aspect ratio, responsive width, and smooth resizing.
+ */
 .penthara-logo {
-    height: auto;
-    width: 100px;
-    padding: 11px;
-    background-color: white;
+    height: auto; /* maintain aspect ratio */
+    width: 100px; /* default width */
+    max-width: 100%; /* prevent overflow */
+    padding: 11px; /* inner spacing */
+    background-color: white; /* logo background */
+    box-sizing: border-box;
+    transition: width 0.3s ease; /* smooth resize animation */
 }
 
+/**
+ * Header Content (Title/Text)
+ * Displays main header text with font size, color, and spacing.
+ */
 .header-content {
-    color: white;
-    font-size: 3.1rem;
-    font-weight: 500;
-    margin-left: 150px;
+    color: white; /* text color */
+    font-size: 3.1rem; /* default font size */
+    font-weight: 500; /* medium-bold weight */
+    margin-left: 150px; /* spacing from logo */
+    white-space: nowrap; /* prevent wrapping */
+    transition: font-size 0.3s ease, margin-left 0.3s ease; /* smooth resize */
+}
+
+/* ============================================
+   Media Queries for Responsiveness
+   ============================================ */
+
+/* Large screens */
+@media (max-width: 1200px) {
+    .header-content {
+        font-size: 2.8rem;
+        margin-left: 120px;
+    }
+    .penthara-logo {
+        width: 90px;
+    }
+}
+
+/* Medium screens / desktops */
+@media (max-width: 992px) {
+    .header-content {
+        font-size: 2.5rem;
+        margin-left: 80px;
+    }
+    .penthara-logo {
+        width: 85px;
+    }
+}
+
+/* Tablets / small screens */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column; /* stack logo and text vertically */
+        justify-content: center;
+        height: auto; /* auto-adjust height */
+        padding: 1rem 2%; /* add padding */
+    }
+    .logo-container {
+        width: auto;
+        height: auto; /* adapt container size */
+    }
+    .penthara-logo {
+        width: 80px;
+        padding: 10px;
+    }
+    .header-content {
+        font-size: 2rem;
+        margin-left: 0; /* remove left margin */
+        margin-top: 0.5rem; /* spacing from logo */
+        text-align: center; /* center text */
+    }
+}
+
+/* Mobile / extra small screens */
+@media (max-width: 480px) {
+    .penthara-logo {
+        width: 70px;
+        padding: 8px;
+    }
+    .header-content {
+        font-size: 1.8rem; /* smaller font for mobile */
+    }
 }

@@ -1,29 +1,111 @@
+/* ============================================
+   Main Footer Styles
+   ============================================ */
+
+/**
+ * Main Footer Container
+ * Provides footer layout with gradient background,
+ * centered content, and responsive height.
+ */
 .main-footer {
-    height: 50vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to right, #330968, #A23BA6);
+    height: 30vh; /* relative height based on viewport */
+    min-height: 200px; /* ensures minimum height on small screens */
+    display: flex; /* flex layout for vertical alignment */
+    align-items: center; /* vertically center content */
+    justify-content: center; /* horizontally center content */
+    background: linear-gradient(to right, #330968, #A23BA6); /* gradient background */
+    padding: 1rem; /* internal spacing */
+    box-sizing: border-box; /* includes padding in total width/height */
+    flex-direction: column; /* stack children vertically */
 }
 
+/**
+ * Icon Logo Container
+ * Holds social or partner logos inside the footer.
+ * Responsive flex layout with wrap and gap.
+ */
 .icon-logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 22px;
-    height: 31%;
-    width: 22%;
-    border-radius: 6px;
-    background-color: white;
+    display: flex; /* flex layout for child icons */
+    flex-wrap: wrap; /* wrap icons to next line if needed */
+    justify-content: center; /* center icons horizontally */
+    align-items: center; /* center icons vertically */
+    gap: 22px; /* space between icons */
+    height: 54%; /* container height relative to footer */
+    max-height: 150px; /* ensures icons don’t grow too tall */
+    width: 22%; /* container width */
+    max-width: 300px; /* max width restriction */
+    border-radius: 6px; /* rounded corners */
+    background-color: white; /* background for visibility */
+    transition: width 0.3s ease, height 0.3s ease; /* smooth resizing */
 }
 
-.footer-icon{
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
+/**
+ * Individual Footer Icons
+ * Circular icons inside the icon container.
+ */
+.footer-icon {
+    height: 75px; /* icon height */
+    width: 75px; /* icon width */
+    border-radius: 50%; /* makes icons circular */
 }
 
+/**
+ * Penthara Logo in Footer
+ * Sized and responsive for different screens.
+ */
 .penthara-logo-footer {
-    height: auto;
-    width: 100px;
+    height: auto; /* maintains aspect ratio */
+    width: 100px; /* default width */
+    max-width: 90%; /* prevents overflow on small screens */
+}
+
+/* ============================================
+   Media Queries for Responsiveness
+   ============================================ */
+
+/* Large tablets / small desktops */
+@media (max-width: 1024px) {
+    .icon-logo-container {
+        width: 50%; /* wider container on smaller screens */
+        gap: 18px; /* slightly smaller gap */
+    }
+    .footer-icon {
+        height: 65px;
+        width: 65px; /* smaller icons */
+    }
+    .penthara-logo-footer {
+        width: 85px; /* reduced logo size */
+    }
+}
+
+/* Tablets / medium screens */
+@media (max-width: 768px) {
+    .icon-logo-container {
+        width: 50%;
+        gap: 16px; /* smaller gap */
+        height: auto; /* adjust height automatically */
+        padding: 0.5rem; /* padding for spacing */
+    }
+    .footer-icon {
+        height: 55px;
+        width: 55px; /* smaller icons */
+    }
+    .penthara-logo-footer {
+        width: 75px; /* reduced logo size */
+    }
+}
+
+/* Mobile / extra small screens */
+@media (max-width: 480px) {
+    .icon-logo-container {
+        width: 50%;
+        gap: 12px; /* minimal spacing */
+    }
+    .footer-icon {
+        height: 45px;
+        width: 45px; /* smallest icons for phones */
+    }
+    .penthara-logo-footer {
+        width: 60px; /* smallest logo size */
+    }
 }

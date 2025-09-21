@@ -1,37 +1,61 @@
+/* ============================================
+   Employee Card Styles
+   ============================================ */
+
+/**
+ * Container for individual employee cards.
+ * Displays employee information with a shadow and rounded corners.
+ */
 .employee-card {
-  border: 1px solid #e1e1e1;
-  padding: 22px;
-  border-radius: 11px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid #e1e1e1; /* light gray border around card */
+  padding: 22px; /* internal spacing inside the card */
+  border-radius: 11px; /* rounded corners */
+  background: #ffffff; /* white background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* subtle shadow for depth */
+  display: flex; /* flex layout for vertical alignment */
+  flex-direction: column; /* stack child elements vertically */
+  gap: 11px; /* space between child elements */
+  transition: transform 0.25s ease, box-shadow 0.25s ease; /* smooth hover effects */
 }
 
+/**
+ * Hover effect for employee card.
+ * Slight lift and stronger shadow for visual feedback.
+ */
 .employee-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px); /* lift card by 5px */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* deeper shadow on hover */
 }
 
+/**
+ * Employee name heading inside the card.
+ * Styled with bold text and primary color.
+ */
 .employee-card h2 {
-  margin: 0;
-  margin-bottom: 11px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #330968;
+  margin: 0; /* remove default margin */
+  margin-bottom: 11px; /* space below heading */
+  font-size: 18px; /* heading size */
+  font-weight: 700; /* bold font */
+  color: #330968; /* primary purple color */
 }
 
+/**
+ * Paragraph text inside the employee card.
+ * Typically used for role, department, or additional info.
+ */
 .employee-card p {
-  margin: 0;
-  margin-bottom: 6px;
-  font-size: 14px;
-  color: #6c757d;
+  margin: 0; /* remove default margin */
+  margin-bottom: 6px; /* space below paragraph */
+  font-size: 14px; /* paragraph font size */
+  color: #6c757d; /* muted gray color */
 }
 
+/**
+ * Container for action buttons like Edit or Delete.
+ * Uses flex layout for horizontal alignment with gaps.
+ */
 .card-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
+  display: flex; /* align buttons horizontally */
+  gap: 10px; /* spacing between buttons */
+  margin-top: 12px; /* spacing above button container */
 }

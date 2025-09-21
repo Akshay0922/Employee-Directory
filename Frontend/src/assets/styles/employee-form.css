@@ -1,56 +1,89 @@
+/* ============================================
+   Employee Form Styles
+   ============================================ */
+
+/**
+ * Container for the employee form.
+ * Centers the form on the page with padding, border, shadow, and rounded corners.
+ */
 .employee-form {
-  width: 100%;
-  margin: 0 auto 40px auto;
-  border: 1px solid #e6e6e6;
-  padding: 10px 30px 30px;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-  box-sizing: border-box;
+  width: 100%; /* full width of parent container */
+  max-width: 500px; /* limits form width on large screens */
+  margin: 0 auto 40px auto; /* centers form and adds bottom margin */
+  border: 1px solid #e6e6e6; /* light gray border */
+  padding: 10px 30px 30px; /* internal spacing */
+  border-radius: 12px; /* rounded corners */
+  background: #ffffff; /* white background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* subtle shadow */
+  transition: all 0.3s ease; /* smooth hover/interaction transitions */
+  box-sizing: border-box; /* includes padding in width calculation */
 }
 
+/**
+ * Form heading style.
+ * Displays form title centered with main theme color.
+ */
 .employee-form h2 {
   margin-bottom: 18px;
   font-size: 20px;
-  color: #330968;
-  letter-spacing: 0.3px;
-  text-align: center;
+  color: #330968; /* primary purple color */
+  letter-spacing: 0.3px; /* slight spacing between letters */
+  text-align: center; /* center heading text */
 }
 
+/**
+ * Error messages under input fields.
+ * Styled to be noticeable in red.
+ */
 .error {
-  color: #dc3545;
+  color: #dc3545; /* bootstrap danger red */
   font-size: 14px;
   margin-top: -6px;
   margin-bottom: 8px;
 }
 
+/**
+ * Input fields inside the form.
+ * Full-width with padding, border, and smooth focus effect.
+ */
 .employee-form input {
-  width: 100%;
+  width: 100%; /* full width of form */
   max-width: 100%;
   height: 45px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  border: 1px solid #ccc; /* light gray border */
+  border-radius: 10px; /* rounded corners */
   font-size: 15px;
-  padding: 0 12px;
-  transition: all 0.3s ease;
+  padding: 0 12px; /* horizontal padding */
+  transition: all 0.3s ease; /* smooth hover/focus effect */
   box-sizing: border-box;
 }
 
+/**
+ * Focus effect on input fields.
+ * Highlights border and adds subtle shadow.
+ */
 .employee-form input:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 8px rgba(40, 167, 69, 0.2);
+  border-color: #28a745; /* green border on focus */
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.2); /* subtle shadow */
 }
 
+/**
+ * Container for form buttons.
+ * Aligns buttons horizontally and wraps on smaller screens.
+ */
 .form-actions {
   display: flex;
-  gap: 12px;
+  gap: 12px; /* spacing between buttons */
   margin-top: 12px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* wrap buttons if screen is small */
   justify-content: flex-start;
 }
 
+/**
+ * Common button styles.
+ * Used by all types of form buttons (submit, cancel, edit, delete).
+ */
 .btn {
   padding: 11px 22px;
   border: none;
@@ -60,44 +93,100 @@
   font-weight: 600;
   transition: all 0.3s ease;
   letter-spacing: 0.3px;
+  min-width: 100px; /* ensures buttons don't shrink too much */
 }
 
+/* =================== Button Variants =================== */
+
+/* Submit Button */
 .submit-btn {
   background: linear-gradient(to right, #330968, #A23BA6);
   color: white;
 }
-
 .submit-btn:hover {
   background: linear-gradient(to right, #1f0550, #822d8f);
 }
-
-.submit-btn:active{
-  transform: scale(0.96);
+.submit-btn:active {
+  transform: scale(0.96); /* click effect */
 }
 
+/* Cancel Button */
 .cancel-btn {
   background: #6c757d;
   color: #fff;
 }
-
 .cancel-btn:hover {
   background: #5a6268;
 }
 
+/* Edit Button */
 .edit-btn {
   background: linear-gradient(to right, #330968, #A23BA6);
   color: #fff;
 }
-
 .edit-btn:hover {
   background: linear-gradient(to right, #1f0550, #822d8f);
 }
 
+/* Delete Button */
 .delete-btn {
   background: #eb2b3e;
   color: #fff;
 }
-
 .delete-btn:hover {
   background: #b02a37;
+}
+
+/* =================== Media Queries =================== */
+
+/**
+ * Medium screens (tablets and small laptops)
+ * Adjusts form padding and button size.
+ */
+@media (max-width: 992px) {
+  .employee-form {
+    padding: 10px 20px 20px;
+  }
+  .btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    min-width: 90px;
+  }
+}
+
+/**
+ * Small screens (large mobiles / small tablets)
+ * Reduce heading font, stack buttons full width.
+ */
+@media (max-width: 768px) {
+  .employee-form {
+    padding: 10px 15px 15px;
+  }
+  .employee-form h2 {
+    font-size: 18px;
+  }
+  .btn {
+    padding: 10px 14px;
+    font-size: 13px;
+    flex: 1 1 100%; /* buttons stack full width */
+    min-width: unset;
+  }
+}
+
+/**
+ * Extra small screens (phones)
+ * Reduce input height, heading size, and spacing.
+ */
+@media (max-width: 480px) {
+  .employee-form h2 {
+    font-size: 16px;
+  }
+  .employee-form input {
+    height: 40px;
+    font-size: 14px;
+    padding: 0 10px;
+  }
+  .form-actions {
+    gap: 8px; /* smaller gap between stacked buttons */
+  }
 }

@@ -1,75 +1,100 @@
+/* ============================================
+   Employee Directory Search Bar Styles
+   ============================================ */
+
+/**
+ * Search Wrapper
+ * Container for search input and search button/icon.
+ * Flex layout aligns elements to the right with spacing.
+ */
 .search-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  position: relative;
-  gap: 11px;
-  margin-bottom: 22px;
+    display: flex; /* flex layout for icon + input */
+    justify-content: flex-end; /* align to the right */
+    align-items: center; /* vertically center items */
+    width: 100%; /* full width */
+    height: 50px; /* fixed height */
+    position: relative; /* for absolute positioning if needed */
+    gap: 11px; /* spacing between children */
+    margin-bottom: 22px; /* spacing from other elements */
 }
 
+/**
+ * Search Icon Circle
+ * Circular button with gradient background.
+ * Hover and active states for user interaction feedback.
+ */
 .search-icon-circle {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: linear-gradient(to right, #330968, #A23BA6);
-  border: 1px solid #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease;
-  color: white;
-  z-index: 2;
+    width: 45px; /* width of the circle */
+    height: 45px; /* height of the circle */
+    border-radius: 50%; /* make it circular */
+    background: linear-gradient(to right, #330968, #A23BA6); /* gradient */
+    border: 1px solid #ccc; /* subtle border */
+    display: flex; /* flex to center icon */
+    justify-content: center; /* center horizontally */
+    align-items: center; /* center vertically */
+    cursor: pointer; /* pointer on hover */
+    transition: box-shadow 0.3s ease; /* smooth hover effect */
+    color: white; /* icon color */
+    z-index: 2; /* stay above other elements */
 }
 
 .search-icon-circle:hover {
-  background: linear-gradient(to right, #1f0550, #822d8f);
+    background: linear-gradient(to right, #1f0550, #822d8f); /* hover gradient */
 }
 
 .search-icon-circle:active {
-  transform: scale(0.96);
+    transform: scale(0.96); /* subtle click effect */
 }
 
+/**
+ * Search Slide
+ * Hidden input container that expands when 'open' class is added.
+ */
 .search-slide {
-  display: flex;
-  align-items: center;
-  height: 45px;
-  border-radius: 50px;
-  background: white;
-  border: 1px solid #ccc;
-  overflow: hidden;
-  width: 0;
-  opacity: 0;
-  transition: all 0.4s ease;
+    display: flex; /* flex layout for input + clear button */
+    align-items: center; /* vertically center input */
+    height: 45px; /* same height as icon */
+    border-radius: 50px; /* rounded capsule shape */
+    background: white; /* background of input field */
+    border: 1px solid #330968; /* border color */
+    overflow: hidden; /* hide overflowing content */
+    width: 0; /* hidden by default */
+    opacity: 0; /* hidden by default */
+    transition: all 0.4s ease; /* smooth animation */
 }
 
 .search-slide.open {
-  box-shadow: 0 0 9px rgba(0, 123, 255, 0.2);
-  width: 250px;
-  opacity: 1;
-  padding: 0 10px;
+    width: 250px; /* expanded width when active */
+    opacity: 1; /* fully visible */
+    padding: 0 10px; /* padding inside input container */
 }
 
+/**
+ * Search Input Field
+ * Flexible input area inside search slide.
+ */
 .search-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 15px;
-  padding: 8px 10px;
-  background: transparent;
+    flex: 1; /* take up remaining space */
+    border: none; /* remove default border */
+    outline: none; /* remove outline */
+    font-size: 15px; /* readable font size */
+    padding: 8px 10px; /* inner spacing */
+    background: transparent; /* transparent background */
 }
 
+/**
+ * Clear Button
+ * Button to clear input inside search slide.
+ */
 .clear-btn {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  color: #888;
-  margin-left: 5px;
-  transition: color 0.2s;
+    border: none; /* no border */
+    background: transparent; /* transparent background */
+    cursor: pointer; /* pointer on hover */
+    color: #888; /* default color */
+    margin-left: 5px; /* spacing from input */
+    transition: color 0.2s; /* smooth color change */
 }
 
 .clear-btn:hover {
-  color: #000;
+    color: #000; /* darker on hover */
 }
