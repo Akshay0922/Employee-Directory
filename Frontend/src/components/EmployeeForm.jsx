@@ -1,100 +1,113 @@
 // React Imports
 import { useState, useEffect } from "react";
 
-// Utility function for form validation
-import { validateEmployee } from "../utils/validations";
+// Utility functions for validation
+import { validateEmployee, validateField } from "../utils/validations";
 
 // Component-specific CSS
 import '../assets/styles/employee-form.css';
 
 /**
  * EmployeeForm Component
- * 
- * Renders a form for adding or editing an employee.
- * Handles input changes, validation, and form submission.
- * 
- * @param {Object} props - Component props
- * @param {Function} props.onSubmit - Callback to submit form data
- * @param {Object} props.editingEmployee - Employee data if editing
- * @param {Function} props.onCancel - Callback to cancel editing
+ *
+ * Renders a form for adding a new employee or editing an existing one.
+ * Handles live field-level validation, full form validation, and submission.
+ * Shows appropriate error messages including a "no changes detected" message in edit mode.
+ *
+ * @param {Object} props
+ * @param {Function} props.onSubmit - Callback function to submit form data to parent
+ * @param {Object|null} props.editingEmployee - Employee object if editing, null when adding
+ * @param {Function} props.onCancel - Callback function invoked when editing is cancelled
  */
 const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
-  // Form data state
+  // State to hold current input values for name, role, and department
   const [formData, setFormData] = useState({ name: "", role: "", department: "" });
 
-  // Error message state
-  const [error, setError] = useState("");
+  // State to hold validation errors for each field + general errors
+  const [errors, setErrors] = useState({ name: "", role: "", department: "" });
 
   /**
    * useEffect Hook
-   * Updates form data when editingEmployee changes
+   * - Runs whenever editingEmployee prop changes
+   * - Populates the form fields when editing an employee
+   * - Clears previous validation errors
    */
   useEffect(() => {
     if (editingEmployee) {
-      setFormData(editingEmployee); // populate form for editing
-      setError(""); // clear any existing error
+      setFormData(editingEmployee); // Populate form for editing
+      setErrors({ name: "", role: "", department: "" }); // Clear errors
     } else {
-      setFormData({ name: "", role: "", department: "" }); // reset form
+      // Reset form when adding a new employee
+      setFormData({ name: "", role: "", department: "" });
+      setErrors({ name: "", role: "", department: "" });
     }
   }, [editingEmployee]);
 
   /**
    * handleChange
-   * Updates formData state on input change
-   * @param {Event} e - input change event
+   * - Updates the formData state when an input field changes
+   * - Performs field-level validation on the fly
+   * @param {Event} e - The input change event
    */
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // Update the specific field in formData
+    setFormData(prev => ({ ...prev, [name]: value }));
+
+    // Validate the field and update the corresponding error message
+    const errorMessage = validateField(name, value);
+    setErrors(prev => ({ ...prev, [name]: errorMessage }));
   };
 
   /**
- * Handle Cancel action for the form
- * 
- * - Resets form fields to their initial empty state
- * - Clears any existing validation error messages
- * - Calls the parent onCancel handler to inform parent
- *   (e.g., reset editingEmployee or close the form)
- */
+   * handleCancel
+   * - Resets the form fields to empty values
+   * - Clears all validation errors
+   * - Calls the parent onCancel function to close form or reset editing state
+   */
   const handleCancel = () => {
-    setFormData({ name: "", role: "", department: "" }); // Reset all input fields
-    setError(""); // Clear local validation errors
-    onCancel();   // Notify parent component that cancel action occurred
+    setFormData({ name: "", role: "", department: "" }); // Reset form
+    setErrors({ name: "", role: "", department: "" });   // Clear errors
+    onCancel(); // Notify parent about cancel action
   };
 
   /**
    * handleSubmit
-   * Validates form data and triggers onSubmit callback
-   * @param {Event} e - form submit event
+   * - Prevents default form submission behavior
+   * - Runs full form validation (including "no changes" check in edit mode)
+   * - Updates errors state if validation fails
+   * - Calls parent onSubmit with formData if validation passes
+   * - Resets the form after successful submission
    */
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate form data
-    const validationError = validateEmployee(formData, editingEmployee);
-    if (validationError) {
-      setError(validationError); // show error message
-      return;
+    // Run full form validation
+    const validationErrors = validateEmployee(formData, editingEmployee);
+    if (validationErrors) {
+      setErrors(validationErrors); // Show validation errors
+      return; // Stop submission
     }
 
-    // Submit form data
+    // Submit valid form data to parent
     onSubmit(formData);
 
-    // Reset form
+    // Reset form and errors after submission
     setFormData({ name: "", role: "", department: "" });
-    setError(""); // clear error
+    setErrors({ name: "", role: "", department: "", general: "" });
   };
 
   return (
     <form onSubmit={handleSubmit} className="employee-form">
 
-      {/* Form Heading */}
+      {/* Form heading: dynamically changes based on add/edit mode */}
       <h2>{editingEmployee ? "Edit Employee" : "Add Employee"}</h2>
 
-      {/* Error Message */}
-      {error && <p className="error">{error}</p>}
+      {/* Display general errors (e.g., "No changes detected") */}
+      {errors.general && <p className="error">{errors.general}</p>}
 
-      {/* Input Fields */}
+      {/* Input field for Name */}
       <input
         type="text"
         name="name"
@@ -102,6 +115,9 @@ const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
         value={formData.name}
         onChange={handleChange}
       />
+      {errors.name && <p className="error">{errors.name}</p>}
+
+      {/* Input field for Role */}
       <input
         type="text"
         name="role"
@@ -109,6 +125,9 @@ const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
         value={formData.role}
         onChange={handleChange}
       />
+      {errors.role && <p className="error">{errors.role}</p>}
+
+      {/* Input field for Department */}
       <input
         type="text"
         name="department"
@@ -116,14 +135,16 @@ const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
         value={formData.department}
         onChange={handleChange}
       />
+      {errors.department && <p className="error">{errors.department}</p>}
 
       {/* Form Action Buttons */}
       <div className="form-actions">
+        {/* Submit button: label changes based on add/edit mode */}
         <button type="submit" className="btn submit-btn">
           {editingEmployee ? "Update" : "Add"}
         </button>
 
-        {/* Cancel Button shown only when editing */}
+        {/* Cancel button: only visible when editing */}
         {editingEmployee && (
           <button type="button" onClick={handleCancel} className="btn cancel-btn">
             Cancel
