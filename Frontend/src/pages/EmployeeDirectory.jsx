@@ -1,5 +1,5 @@
 // React imports
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Components
 import SearchBar from "../components/SearchBar";
@@ -28,6 +28,11 @@ const EmployeeDirectory = () => {
 
     // State for currently editing employee
     const [selectedEmployee, setSelectedEmployee] = useState(null);
+
+    // Load employees from localStorage on component mount
+    useEffect(() => {
+        setEmployees(getEmployees());
+    }, []);
 
     /**
      * Handles saving an employee
