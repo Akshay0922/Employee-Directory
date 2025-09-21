@@ -1,13 +1,13 @@
 /**
  * Validate employee form data.
- * Ensures all required fields are filled.
- * @param {Object} data - Employee data object containing:
- *   @property {string} name - Employee name
- *   @property {string} role - Employee role
- *   @property {string} department - Employee department
- * @returns {string|null} - Returns error message string if validation fails, otherwise null
+ * Ensures all required fields are filled and valid.
+ * Also checks for "no changes" in edit mode.
+ * 
+ * @param {Object} data - Employee form data
+ * @param {Object|null} originalData - Original employee (only in edit mode)
+ * @returns {string|null} - Error message if invalid, otherwise null
  */
-export const validateEmployee = (data) => {
+export const validateEmployee = (data, originalData = null) => {
   // Common regex: only alphabets + spaces allowed
   const alphaRegex = /^[A-Za-z\s]+$/;
 
@@ -35,6 +35,16 @@ export const validateEmployee = (data) => {
     return "Department must contain only letters and spaces";
   }
 
-  // If all validations pass
+  // Extra validation in edit mode → no changes detected
+  if (
+    originalData &&
+    data.name.trim() === originalData.name.trim() &&
+    data.role.trim() === originalData.role.trim() &&
+    data.department.trim() === originalData.department.trim()
+  ) {
+    return "No changes detected to update.";
+  }
+
+  // ✅ All validations passed
   return null;
 };

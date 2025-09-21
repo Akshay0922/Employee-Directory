@@ -49,6 +49,20 @@ const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
   };
 
   /**
+ * Handle Cancel action for the form
+ * 
+ * - Resets form fields to their initial empty state
+ * - Clears any existing validation error messages
+ * - Calls the parent onCancel handler to inform parent
+ *   (e.g., reset editingEmployee or close the form)
+ */
+  const handleCancel = () => {
+    setFormData({ name: "", role: "", department: "" }); // Reset all input fields
+    setError(""); // Clear local validation errors
+    onCancel();   // Notify parent component that cancel action occurred
+  };
+
+  /**
    * handleSubmit
    * Validates form data and triggers onSubmit callback
    * @param {Event} e - form submit event
@@ -57,7 +71,7 @@ const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
     e.preventDefault();
 
     // Validate form data
-    const validationError = validateEmployee(formData);
+    const validationError = validateEmployee(formData, editingEmployee);
     if (validationError) {
       setError(validationError); // show error message
       return;
@@ -73,7 +87,7 @@ const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
 
   return (
     <form onSubmit={handleSubmit} className="employee-form">
-      
+
       {/* Form Heading */}
       <h2>{editingEmployee ? "Edit Employee" : "Add Employee"}</h2>
 
@@ -111,7 +125,7 @@ const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
 
         {/* Cancel Button shown only when editing */}
         {editingEmployee && (
-          <button type="button" onClick={onCancel} className="btn cancel-btn">
+          <button type="button" onClick={handleCancel} className="btn cancel-btn">
             Cancel
           </button>
         )}
