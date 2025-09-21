@@ -11,7 +11,7 @@ const Avatar = ({ name }) => {
     const initial = name ? name[0].toUpperCase() : "?";
 
     // Pick a pastel color based on first letter
-    const colors = ["#FFB6C1", "#87CEFA", "#FFD700", "#90EE90", "#FFA07A"];
+    const colors = ["#52bafbff", "#FFD700", "#20B2AA", "#DA70D6"];
     const colorIndex = name ? name.charCodeAt(0) % colors.length : 0;
     const bgColor = colors[colorIndex];
 
