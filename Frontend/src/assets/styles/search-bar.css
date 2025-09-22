@@ -249,7 +249,7 @@
 /* Mobile Portrait: width ≤ 480px */
 @media (max-width: 480px) {
     .search-wrapper { justify-content: center; }
-    .search-slide.open { width: 200px; }
+    .search-slide.open { width: 220px; }
     .search-input { font-size: 12px; padding: 5px 6px; }
     .search-icon-circle { width: 35px; height: 35px; }
     .listening-popup {
