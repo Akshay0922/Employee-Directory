@@ -3,7 +3,7 @@
  * 
  * Validates the entire employee form data.
  * Ensures all required fields are filled and contain only valid characters.
- * Also checks for "no changes" if in edit mode.
+ * Also checks for "No changes" if in edit mode.
  * 
  * @param {Object} data - Current employee form data
  *   @property {string} name
@@ -13,6 +13,7 @@
  * @returns {Object|null} - Returns an object containing field-level errors 
  *                          or a general error. Returns null if no errors.
  */
+
 export const validateEmployee = (data, originalData = null) => {
   const alphaRegex = /^[A-Za-z\s]+$/; // Allow only letters and spaces
   const fieldErrors = { name: "", role: "", department: "" }; // Initialize errors
@@ -31,9 +32,9 @@ export const validateEmployee = (data, originalData = null) => {
 
   // Extra validation in edit mode → detect no changes
   if (originalData &&
-      data.name.trim() === originalData.name.trim() &&
-      data.role.trim() === originalData.role.trim() &&
-      data.department.trim() === originalData.department.trim()) {
+    data.name.trim() === originalData.name.trim() &&
+    data.role.trim() === originalData.role.trim() &&
+    data.department.trim() === originalData.department.trim()) {
     fieldErrors.general = "No changes detected to update";
   }
 

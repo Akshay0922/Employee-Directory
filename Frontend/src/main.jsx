@@ -1,10 +1,10 @@
-// Import React StrictMode for highlighting potential problems in the application
+// Import React StrictMode
 import { StrictMode } from 'react';
 
-// Import createRoot from react-dom/client to enable React 18 root API
+// Import createRoot from react-dom/client
 import { createRoot } from 'react-dom/client';
 
-// Import the main App component
+// Import main App component
 import App from './App.jsx';
 
 /**
