@@ -1,45 +1,43 @@
-/* ============================================
-   Employee Directory Search Bar Styles
-   ============================================ */
-
-/* 
+/* --------------------------
    Search Wrapper
-   - Container for the search input and icon/button
-   - Flex layout aligns items horizontally and vertically
-   - Responsive padding included for small screens
+   --------------------------
+   Container for search input and buttons.
+   Flex layout aligns items horizontally and vertically.
+   Includes spacing and responsive padding.
 */
 .search-wrapper {
     display: flex;
-    justify-content: flex-end; /* align items to the right by default */
-    align-items: center;       /* vertically center items */
-    width: 100%;               /* full width of parent */
-    height: 50px;              /* fixed height */
-    position: relative;        /* allows absolute positioning of child elements if needed */
-    gap: 11px;                 /* spacing between child elements */
-    margin-bottom: 22px;       /* spacing from elements below */
-    padding: 0 10px;           /* horizontal padding for small screens */
-    box-sizing: border-box;    /* include padding in width */
+    justify-content: flex-end;      /* align items to the right by default */
+    align-items: center;            /* vertical centering */
+    width: 100%;
+    height: 50px;
+    position: relative;             /* allows absolute positioning of children */
+    gap: 11px;                      /* spacing between child elements */
+    margin-bottom: 22px;            /* spacing below the search bar */
+    padding: 0 10px;                /* horizontal padding for smaller screens */
+    box-sizing: border-box;         /* include padding in width calculation */
 }
 
-/* 
+/* --------------------------
    Search Icon Circle
-   - Circular button containing search icon
-   - Gradient background with hover & active states
-   - Uses flex to center the icon inside the circle
+   --------------------------
+   Circular button for toggling search bar.
+   Includes hover and active states.
+   Gradient background with smooth transitions.
 */
 .search-icon-circle {
     width: 45px;
     height: 45px;
-    border-radius: 50%; /* fully circular */
+    border-radius: 50%;
     background: linear-gradient(to right, #330968, #A23BA6);
     border: 1px solid #ccc;
     display: flex;
-    justify-content: center;  /* horizontal centering */
-    align-items: center;      /* vertical centering */
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    transition: box-shadow 0.3s ease, transform 0.2s ease; /* smooth interaction effects */
-    color: white;             /* icon color */
-    z-index: 2;               /* ensure it stays above input when expanded */
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    color: white;
+    z-index: 2;                     /* ensures it stays above the input */
 }
 
 .search-icon-circle:hover {
@@ -47,14 +45,14 @@
 }
 
 .search-icon-circle:active {
-    transform: scale(0.96); /* subtle click animation */
+    transform: scale(0.96);         /* subtle click animation */
 }
 
-/* 
-   Search Slide
-   - Hidden input container that expands on `.open` class
-   - Rounded capsule shape with border
-   - Smooth transition for width and opacity
+/* --------------------------
+   Search Slide (Input Container)
+   --------------------------
+   Initially hidden, expands when `.open` class is applied.
+   Rounded capsule shape, smooth transition for width and opacity.
 */
 .search-slide {
     display: flex;
@@ -63,27 +61,26 @@
     border-radius: 50px;
     background: white;
     border: 1px solid #330968;
-    overflow: hidden; /* hide content when collapsed */
-    width: 0;         /* hidden by default */
-    opacity: 0;       /* hidden by default */
-    transition: all 0.4s ease;
+    overflow: hidden;               /* hides content when collapsed */
+    width: 0;
+    opacity: 0;
+    transition: all 0.4s ease;      /* smooth expand/collapse */
 }
 
-/* Open state for the search slide */
 .search-slide.open {
-    width: 250px;    /* expanded width */
-    opacity: 1;      /* visible */
-    padding: 0 10px; /* inner spacing */
+    width: 270px;                    /* expanded width */
+    opacity: 1;                      /* visible */
+    padding: 0 10px;                 /* inner spacing */
 }
 
-/* 
+/* --------------------------
    Search Input Field
-   - Flexible input taking up remaining space in slide
-   - No border or outline for cleaner look
-   - Transparent background for smooth integration
+   --------------------------
+   Flexible input, transparent background.
+   No borders or outline for clean appearance.
 */
 .search-input {
-    flex: 1;
+    flex: 1;                         /* occupies remaining space */
     border: none;
     outline: none;
     font-size: 15px;
@@ -91,22 +88,137 @@
     background: transparent;
 }
 
-/* 
+/* --------------------------
    Clear Button
-   - Optional button to clear input
-   - Transparent background, hover color change for feedback
+   --------------------------
+   Optional button to clear input.
+   Transparent background with hover effect.
 */
 .clear-btn {
     border: none;
     background: transparent;
     cursor: pointer;
     color: #888;
-    margin-left: 5px;       /* spacing from input */
-    transition: color 0.2s; /* smooth hover effect */
+    margin-left: 5px;
+    transition: color 0.2s;
 }
 
 .clear-btn:hover {
-    color: #000; /* darker on hover */
+    color: #000;                     /* darker on hover */
+}
+
+/* --------------------------
+   Voice / Mic Button
+   --------------------------
+   Replaces clear button when no text input.
+   Color changes when active/listening.
+*/
+.voice-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #888;
+    margin-left: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.voice-btn:hover svg {
+    color: #330968;                  /* purple hover effect */
+}
+
+/* --------------------------
+   Listening Popup
+   --------------------------
+   Shows when mic is active.
+   Includes animated pulse waves for feedback.
+*/
+.listening-popup {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: white;
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 9999;
+    animation: popupFadeIn 0.3s ease forwards;
+}
+
+.listening-popup.fade-out {
+    animation: popupFadeOut 0.3s ease forwards;
+}
+
+.listening-popup p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #330968;
+    margin: 0;
+}
+
+/* --------------------------
+   Mic Animation (Pulse Waves)
+   --------------------------
+   Three waves animated in sequence to indicate listening.
+*/
+.mic-anim {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+}
+
+.mic-anim .waves {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid red;
+    border-radius: 50%;
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    0%   { transform: scale(0.8); opacity: 0.7; }
+    50%  { transform: scale(1.5); opacity: 0.3; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+/* --------------------------
+   Close Button for Popup
+   --------------------------
+   Stops listening when clicked.
+   Hover changes color for feedback.
+*/
+.close-popup {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #555;
+    margin-left: auto;
+    transition: color 0.2s;
+}
+
+.close-popup:hover {
+    color: #000;
+}
+
+/* --------------------------
+   Popup Fade Animations
+   -------------------------- */
+@keyframes popupFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popupFadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(20px); }
 }
 
 /* ============================================
@@ -115,54 +227,40 @@
 
 /* Tablets: width ≤ 1024px */
 @media (max-width: 1024px) {
-    .search-slide.open {
-        width: 210px; /* slightly smaller on tablet */
-    }
-
-    .search-input {
-        font-size: 14px; /* reduce font size */
-    }
-
-    .search-icon-circle {
-        width: 40px;
-        height: 40px;
-    }
+    .search-slide.open { width: 260px; }
+    .search-input { font-size: 14px; }
+    .search-icon-circle { width: 40px; height: 40px; }
+    .listening-popup { bottom: 70px; right: 15px; padding: 18px 25px; }
+    .mic-anim .waves { width: 50px; height: 50px; }
+    .mic-anim svg { width: 35px !important; height: 35px !important; }
 }
 
 /* Mobile Landscape: width ≤ 768px */
 @media (max-width: 768px) {
-    .search-slide.open {
-        width: 210px; /* same as tablet for consistency */
-    }
-
-    .search-input {
-        font-size: 13px;
-        padding: 6px 8px; /* reduce padding */
-    }
-
-    .search-icon-circle {
-        width: 38px;
-        height: 38px;
-    }
+    .search-slide.open { width: 240px; }
+    .search-input { font-size: 13px; padding: 6px 8px; }
+    .search-icon-circle { width: 38px; height: 38px; }
+    .listening-popup { bottom: 60px; right: 12px; padding: 16px 22px; }
+    .mic-anim .waves { width: 45px; height: 45px; }
+    .mic-anim svg { width: 30px !important; height: 30px !important; }
+    .listening-popup p { font-size: 14px; }
 }
 
 /* Mobile Portrait: width ≤ 480px */
 @media (max-width: 480px) {
-    .search-wrapper {
-        justify-content: center; /* center the search bar on very small screens */
+    .search-wrapper { justify-content: center; }
+    .search-slide.open { width: 200px; }
+    .search-input { font-size: 12px; padding: 5px 6px; }
+    .search-icon-circle { width: 35px; height: 35px; }
+    .listening-popup {
+        bottom: 50px;
+        right: 10px;
+        padding: 14px 18px;
+        flex-direction: column;
+        gap: 10px;
     }
-
-    .search-slide.open {
-        width: 180px; /* smaller width to fit mobile screen */
-    }
-
-    .search-input {
-        font-size: 12px;
-        padding: 5px 6px;
-    }
-
-    .search-icon-circle {
-        width: 35px;
-        height: 35px;
-    }
+    .mic-anim .waves { width: 40px; height: 40px; }
+    .mic-anim svg { width: 28px !important; height: 28px !important; }
+    .listening-popup p { font-size: 13px; text-align: center; }
+    .close-popup { margin-left: 0; align-self: flex-end; }
 }
