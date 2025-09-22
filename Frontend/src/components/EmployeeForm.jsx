@@ -1,6 +1,8 @@
 // React Imports
 import { useState, useEffect } from "react";
 
+import { toast } from 'react-toastify';
+
 // Utility functions for validation
 import { validateEmployee, validateField } from "../utils/validations";
 
@@ -70,6 +72,7 @@ const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
     setFormData({ name: "", role: "", department: "" }); // Reset form
     setErrors({ name: "", role: "", department: "" });   // Clear errors
     onCancel(); // Notify parent about cancel action
+    toast.info("Edit cancelled");
   };
 
   /**
@@ -87,6 +90,7 @@ const EmployeeForm = ({ onSubmit, editingEmployee, onCancel }) => {
     const validationErrors = validateEmployee(formData, editingEmployee);
     if (validationErrors) {
       setErrors(validationErrors); // Show validation errors
+      toast.error("Please fix errors in the form!");
       return; // Stop submission
     }
 

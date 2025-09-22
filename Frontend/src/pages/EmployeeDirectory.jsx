@@ -1,6 +1,10 @@
 // React imports
 import { useState, useEffect } from "react";
 
+// React Toasts for every major actions
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // Components
 import SearchBar from "../components/SearchBar";
 import EmployeeList from "../components/EmployeeList";
@@ -56,10 +60,12 @@ const EmployeeDirectory = () => {
             const updatedList = updateEmployee(selectedEmployee.id, employee);
             setEmployees([...updatedList]);
             setSelectedEmployee(null); // Reset selection after edit
+            toast.success("Employee updated successfully!");
         } else {
             // Add new employee
             const updatedList = addEmployee(employee);
             setEmployees([...updatedList]);
+            toast.success("Employee added successfully!");
         }
 
         // Ensure form is visible after save
@@ -96,6 +102,7 @@ const EmployeeDirectory = () => {
      */
     const handleDelete = (id) => {
         setEmployees(deleteEmployee(id));
+        toast.info("Employee deleted.");
     };
 
     /**
@@ -107,6 +114,7 @@ const EmployeeDirectory = () => {
             emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             emp.department.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
 
     return (
         <section className="main-page">
@@ -139,6 +147,15 @@ const EmployeeDirectory = () => {
                     onDelete={handleDelete}
                 />
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={true}
+                closeOnClick
+                pauseOnHover
+                draggable
+            />
         </section>
     );
 };

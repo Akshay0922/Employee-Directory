@@ -1,6 +1,8 @@
 // Importing Hooks
 import { useState, useRef } from "react";
 
+import { toast } from "react-toastify";
+
 // Importing react icons
 import { FiSearch, FiX, FiMic } from "react-icons/fi";
 
@@ -111,7 +113,10 @@ const SearchBar = ({ searchQuery, setSearchQuery, expanded, setExpanded }) => {
   };
 
   /** Clear current search input */
-  const clearSearch = () => setSearchQuery("");
+  const clearSearch = () => {
+    setSearchQuery("");
+    toast.info("Search cleared!");
+  }
 
   return (
     <div className="search-wrapper">
