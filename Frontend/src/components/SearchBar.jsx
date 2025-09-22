@@ -1,6 +1,10 @@
+// Importing Hooks
 import { useState, useRef } from "react";
+
+// Importing react icons
 import { FiSearch, FiX, FiMic } from "react-icons/fi";
 
+// Component-specific css
 import '../assets/styles/search-bar.css';
 
 /**
@@ -144,9 +148,7 @@ const SearchBar = ({ searchQuery, setSearchQuery, expanded, setExpanded }) => {
         <div className="listening-popup fade-in">
           <div className="mic-anim">
             <FiMic size={40} />
-            <span className="waves"></span>
-            <span className="waves"></span>
-            <span className="waves"></span>
+            <span className="wave"></span>
           </div>
           <p>Listening...</p>
           <button className="close-popup" onClick={() => stopMic(false, true)}>
