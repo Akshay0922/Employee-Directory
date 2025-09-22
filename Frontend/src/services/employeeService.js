@@ -4,6 +4,7 @@ const EMPLOYEE_KEY = "employees";
  * Get all employees
  * @returns {Array} Array of employee objects
  */
+
 export const getEmployees = () => {
   return JSON.parse(localStorage.getItem(EMPLOYEE_KEY)) || [];
 };
@@ -13,6 +14,7 @@ export const getEmployees = () => {
  * @param {Object} employee - { name, role, department }
  * @returns {Array} Updated employee list
  */
+
 export const addEmployee = (employee) => {
   const employees = getEmployees();
   const newEmp = { ...employee, id: Date.now() }; // unique ID using timestamp
@@ -27,6 +29,7 @@ export const addEmployee = (employee) => {
  * @param {Object} updatedData - { name, role, department }
  * @returns {Array} Updated employee list
  */
+
 export const updateEmployee = (id, updatedData) => {
   let employees = getEmployees();
   employees = employees.map((emp) =>
@@ -41,6 +44,7 @@ export const updateEmployee = (id, updatedData) => {
  * @param {number} id - Employee ID to delete
  * @returns {Array} Updated employee list
  */
+
 export const deleteEmployee = (id) => {
   let employees = getEmployees();
   employees = employees.filter((emp) => emp.id !== id);

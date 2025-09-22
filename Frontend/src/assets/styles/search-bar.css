@@ -7,15 +7,15 @@
 */
 .search-wrapper {
     display: flex;
-    justify-content: flex-end;      /* align items to the right by default */
-    align-items: center;            /* vertical centering */
+    justify-content: flex-end;/* align items to the right by default */
+    align-items: center;/* vertical centering */
     width: 100%;
     height: 50px;
-    position: relative;             /* allows absolute positioning of children */
-    gap: 11px;                      /* spacing between child elements */
-    margin-bottom: 22px;            /* spacing below the search bar */
-    padding: 0 10px;                /* horizontal padding for smaller screens */
-    box-sizing: border-box;         /* include padding in width calculation */
+    position: relative;/* allows absolute positioning of children */
+    gap: 11px;/* spacing between child elements */
+    margin-bottom: 22px;           
+    padding: 0 10px;/* horizontal padding for smaller screens */
+    box-sizing: border-box;/* include padding in width calculation */
 }
 
 /* --------------------------
@@ -37,21 +37,21 @@
     cursor: pointer;
     transition: box-shadow 0.3s ease, transform 0.2s ease;
     color: white;
-    z-index: 2;                     /* ensures it stays above the input */
+    z-index: 2;/* ensures it stays above the input */
 }
 
 .search-icon-circle:hover {
-    background: linear-gradient(to right, #1f0550, #822d8f); /* darker on hover */
+    background: linear-gradient(to right, #1f0550, #822d8f);
 }
 
 .search-icon-circle:active {
-    transform: scale(0.96);         /* subtle click animation */
+    transform: scale(0.96);/* click animation */
 }
 
 /* --------------------------
    Search Slide (Input Container)
    --------------------------
-   Initially hidden, expands when `.open` class is applied.
+   Initially hidden, expands when .open class is applied.
    Rounded capsule shape, smooth transition for width and opacity.
 */
 .search-slide {
@@ -61,16 +61,16 @@
     border-radius: 50px;
     background: white;
     border: 1px solid #330968;
-    overflow: hidden;               /* hides content when collapsed */
+    overflow: hidden;/* hides content when collapsed */
     width: 0;
     opacity: 0;
-    transition: all 0.4s ease;      /* smooth expand/collapse */
+    transition: all 0.4s ease;/* smooth expand/collapse */
 }
 
 .search-slide.open {
-    width: 270px;                    /* expanded width */
-    opacity: 1;                      /* visible */
-    padding: 0 10px;                 /* inner spacing */
+    width: 270px;/* expanded width */
+    opacity: 1;/* visible */
+    padding: 0 10px;
 }
 
 /* --------------------------
@@ -80,7 +80,7 @@
    No borders or outline for clean appearance.
 */
 .search-input {
-    flex: 1;                         /* occupies remaining space */
+    flex: 1;/* occupies remaining space */
     border: none;
     outline: none;
     font-size: 15px;
@@ -104,7 +104,7 @@
 }
 
 .clear-btn:hover {
-    color: #000;                     /* darker on hover */
+    color: #000;
 }
 
 /* --------------------------
@@ -126,7 +126,7 @@
 }
 
 .voice-btn:hover svg {
-    color: #330968;                  /* purple hover effect */
+    color: #330968;/* purple hover effect */
 }
 
 /* --------------------------
@@ -221,37 +221,82 @@
     to   { opacity: 0; transform: translateY(20px); }
 }
 
-/* ============================================
-   Responsive Media Queries
-   ============================================ */
+/* Responsive Media Queries */
 
 /* Tablets: width ≤ 1024px */
 @media (max-width: 1024px) {
-    .search-slide.open { width: 260px; }
-    .search-input { font-size: 14px; }
-    .search-icon-circle { width: 40px; height: 40px; }
-    .listening-popup { bottom: 70px; right: 15px; padding: 18px 25px; }
-    .mic-anim .waves { width: 50px; height: 50px; }
-    .mic-anim svg { width: 35px !important; height: 35px !important; }
+    .search-slide.open { 
+        width: 260px; 
+    }
+    .search-input { 
+        font-size: 14px; 
+    }
+    .search-icon-circle { 
+        width: 40px; 
+        height: 40px; 
+    }
+    .listening-popup { 
+        bottom: 70px; 
+        right: 15px; 
+        padding: 18px 25px; 
+    }
+    .mic-anim .waves { 
+        width: 50px; 
+        height: 50px; 
+    }
+    .mic-anim svg { 
+        width: 35px !important; 
+        height: 35px !important; 
+    }
 }
 
 /* Mobile Landscape: width ≤ 768px */
 @media (max-width: 768px) {
-    .search-slide.open { width: 240px; }
-    .search-input { font-size: 13px; padding: 6px 8px; }
-    .search-icon-circle { width: 38px; height: 38px; }
-    .listening-popup { bottom: 60px; right: 12px; padding: 16px 22px; }
-    .mic-anim .waves { width: 45px; height: 45px; }
-    .mic-anim svg { width: 30px !important; height: 30px !important; }
-    .listening-popup p { font-size: 14px; }
+    .search-slide.open { 
+        width: 240px; 
+    }
+    .search-input { 
+        font-size: 13px; 
+        padding: 6px 8px; 
+    }
+    .search-icon-circle { 
+        width: 38px; 
+        height: 38px; 
+    }
+    .listening-popup { 
+        bottom: 60px; 
+        right: 12px; 
+        padding: 16px 22px; 
+    }
+    .mic-anim .waves { 
+        width: 45px; 
+        height: 45px; 
+    }
+    .mic-anim svg { 
+        width: 30px !important; 
+        height: 30px !important; 
+    }
+    .listening-popup p { 
+        font-size: 14px; 
+    }
 }
 
 /* Mobile Portrait: width ≤ 480px */
 @media (max-width: 480px) {
-    .search-wrapper { justify-content: center; }
-    .search-slide.open { width: 220px; }
-    .search-input { font-size: 12px; padding: 5px 6px; }
-    .search-icon-circle { width: 35px; height: 35px; }
+    .search-wrapper { 
+        justify-content: center; 
+    }
+    .search-slide.open { 
+        width: 220px; 
+    }
+    .search-input { 
+        font-size: 12px; 
+        padding: 5px 6px; 
+    }
+    .search-icon-circle { 
+        width: 35px; 
+        height: 35px; 
+    }
     .listening-popup {
         bottom: 50px;
         right: 10px;
@@ -259,8 +304,20 @@
         flex-direction: column;
         gap: 10px;
     }
-    .mic-anim .waves { width: 40px; height: 40px; }
-    .mic-anim svg { width: 28px !important; height: 28px !important; }
-    .listening-popup p { font-size: 13px; text-align: center; }
-    .close-popup { margin-left: 0; align-self: flex-end; }
+    .mic-anim .waves { 
+        width: 40px; 
+        height: 40px; 
+    }
+    .mic-anim svg { 
+        width: 28px !important; 
+        height: 28px !important; 
+    }
+    .listening-popup p { 
+        font-size: 13px; 
+        text-align: center; 
+    }
+    .close-popup { 
+        margin-left: 0; 
+        align-self: flex-end; 
+    }
 }

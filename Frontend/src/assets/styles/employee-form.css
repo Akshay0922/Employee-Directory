@@ -1,7 +1,3 @@
-/* ============================================
-   Employee Form Styles
-   ============================================ */
-
 /**
  * Container for the employee form.
  * Centers the form on the page with padding, border, shadow, and rounded corners.
@@ -9,13 +5,13 @@
 .employee-form {
   width: 100%; /* full width of parent container */
   max-width: 500px; /* limits form width on large screens */
-  margin: 0 auto 40px auto; /* centers form and adds bottom margin */
-  border: 1px solid #e6e6e6; /* light gray border */
-  padding: 10px 30px 30px; /* internal spacing */
-  border-radius: 12px; /* rounded corners */
-  background: #ffffff; /* white background */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* subtle shadow */
-  transition: all 0.3s ease; /* smooth hover/interaction transitions */
+  margin: 0 auto 40px auto;
+  border: 1px solid #e6e6e6;
+  padding: 10px 30px 30px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease; /* smooth hover transitions */
   box-sizing: border-box; /* includes padding in width calculation */
 }
 
@@ -26,7 +22,7 @@
 .employee-form h2 {
   margin-bottom: 18px;
   font-size: 20px;
-  color: #330968; /* primary purple color */
+  color: #330968;
   letter-spacing: 0.3px; /* slight spacing between letters */
   text-align: center; /* center heading text */
 }
@@ -36,7 +32,7 @@
  * Styled to be noticeable in red.
  */
 .error {
-  color: #dc3545; /* bootstrap danger red */
+  color: #dc3545; /* danger red */
   font-size: 14px;
   margin-top: -6px;
   margin-bottom: 8px;
@@ -47,12 +43,12 @@
  * Full-width with padding, border, and smooth focus effect.
  */
 .employee-form input {
-  width: 100%; /* full width of form */
+  width: 100%;
   max-width: 100%;
   height: 45px;
   margin-bottom: 15px;
-  border: 1px solid #ccc; /* light gray border */
-  border-radius: 10px; /* rounded corners */
+  border: 1px solid #ccc;
+  border-radius: 10px;
   font-size: 15px;
   padding: 0 12px; /* horizontal padding */
   transition: all 0.3s ease; /* smooth hover/focus effect */
@@ -96,7 +92,7 @@
   min-width: 100px; /* ensures buttons don't shrink too much */
 }
 
-/* =================== Button Variants =================== */
+/* Button Variants */
 
 /* Submit Button */
 .submit-btn {
@@ -107,7 +103,7 @@
   background: linear-gradient(to right, #1f0550, #822d8f);
 }
 .submit-btn:active {
-  transform: scale(0.96); /* click effect */
+  transform: scale(0.96);
 }
 
 /* Cancel Button */
@@ -137,7 +133,7 @@
   background: #b02a37;
 }
 
-/* =================== Media Queries =================== */
+/* Media Queries */
 
 /**
  * Medium screens (tablets and small laptops)

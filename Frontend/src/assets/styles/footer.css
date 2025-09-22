@@ -1,7 +1,3 @@
-/* ============================================
-   Main Footer Styles
-   ============================================ */
-
 /**
  * Main Footer Container
  * Provides footer layout with gradient background,
@@ -11,12 +7,12 @@
     height: 30vh; /* relative height based on viewport */
     min-height: 200px; /* ensures minimum height on small screens */
     display: flex; /* flex layout for vertical alignment */
+    flex-direction: column; /* stack children vertically */
     align-items: center; /* vertically center content */
     justify-content: center; /* horizontally center content */
-    background: linear-gradient(to right, #330968, #A23BA6); /* gradient background */
-    padding: 1rem; /* internal spacing */
+    background: linear-gradient(to right, #330968, #A23BA6);
+    padding: 1rem;
     box-sizing: border-box; /* includes padding in total width/height */
-    flex-direction: column; /* stack children vertically */
 }
 
 /**
@@ -29,13 +25,13 @@
     flex-wrap: wrap; /* wrap icons to next line if needed */
     justify-content: center; /* center icons horizontally */
     align-items: center; /* center icons vertically */
-    gap: 22px; /* space between icons */
+    gap: 22px;
     height: 54%; /* container height relative to footer */
     max-height: 150px; /* ensures icons don’t grow too tall */
-    width: 22%; /* container width */
+    width: 22%;
     max-width: 300px; /* max width restriction */
-    border-radius: 6px; /* rounded corners */
-    background-color: white; /* background for visibility */
+    border-radius: 6px;
+    background-color: white;
     transition: width 0.3s ease, height 0.3s ease; /* smooth resizing */
 }
 
@@ -44,9 +40,9 @@
  * Circular icons inside the icon container.
  */
 .footer-icon {
-    height: 75px; /* icon height */
-    width: 75px; /* icon width */
-    border-radius: 50%; /* makes icons circular */
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
 }
 
 /**
@@ -55,26 +51,24 @@
  */
 .penthara-logo-footer {
     height: auto; /* maintains aspect ratio */
-    width: 100px; /* default width */
+    width: 100px;
     max-width: 90%; /* prevents overflow on small screens */
 }
 
-/* ============================================
-   Media Queries for Responsiveness
-   ============================================ */
+/* Media Queries for Responsiveness */
 
 /* Large tablets / small desktops */
 @media (max-width: 1024px) {
     .icon-logo-container {
         width: 50%; /* wider container on smaller screens */
-        gap: 18px; /* slightly smaller gap */
+        gap: 18px;
     }
     .footer-icon {
         height: 65px;
-        width: 65px; /* smaller icons */
+        width: 65px;
     }
     .penthara-logo-footer {
-        width: 85px; /* reduced logo size */
+        width: 85px;
     }
 }
 
@@ -82,16 +76,16 @@
 @media (max-width: 768px) {
     .icon-logo-container {
         width: 50%;
-        gap: 16px; /* smaller gap */
+        gap: 16px;
         height: auto; /* adjust height automatically */
-        padding: 0.5rem; /* padding for spacing */
+        padding: 0.5rem;
     }
     .footer-icon {
         height: 55px;
-        width: 55px; /* smaller icons */
+        width: 55px;
     }
     .penthara-logo-footer {
-        width: 75px; /* reduced logo size */
+        width: 75px;
     }
 }
 
@@ -99,13 +93,13 @@
 @media (max-width: 480px) {
     .icon-logo-container {
         width: 50%;
-        gap: 12px; /* minimal spacing */
+        gap: 12px;
     }
     .footer-icon {
         height: 45px;
-        width: 45px; /* smallest icons for phones */
+        width: 45px;
     }
     .penthara-logo-footer {
-        width: 60px; /* smallest logo size */
+        width: 60px;
     }
 }

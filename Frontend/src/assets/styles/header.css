@@ -1,19 +1,15 @@
-/* ============================================
-   Main Header Styles
-   ============================================ */
-
 /**
  * Main Header Container
  * Provides the top navigation/header layout with gradient background,
  * logo, and title/content aligned using flexbox.
  */
 .main-header {
-    width: 100%; /* full width */
+    width: 100%;
     height: 20vh; /* relative to viewport height */
     min-height: 100px; /* ensures visibility on small screens */
     display: flex; /* flex layout for alignment */
     align-items: center; /* vertically center children */
-    background: linear-gradient(to right, #330968, #A23BA6); /* gradient background */
+    background: linear-gradient(to right, #330968, #A23BA6);
     padding: 0 2%; /* horizontal padding */
     box-sizing: border-box; /* include padding in width */
 }
@@ -27,7 +23,7 @@
     align-items: center;
     justify-content: center;
     width: 20%; /* fixed width relative to header */
-    height: 100%; /* full header height */
+    height: 100%;
     flex-shrink: 0; /* prevent shrinking on smaller screens */
 }
 
@@ -37,10 +33,10 @@
  */
 .penthara-logo {
     height: auto; /* maintain aspect ratio */
-    width: 100px; /* default width */
+    width: 100px;
     max-width: 100%; /* prevent overflow */
-    padding: 11px; /* inner spacing */
-    background-color: white; /* logo background */
+    padding: 11px;
+    background-color: white;
     box-sizing: border-box;
     transition: width 0.3s ease; /* smooth resize animation */
 }
@@ -50,17 +46,15 @@
  * Displays main header text with font size, color, and spacing.
  */
 .header-content {
-    color: white; /* text color */
-    font-size: 3.1rem; /* default font size */
-    font-weight: 500; /* medium-bold weight */
+    color: white;
+    font-size: 3.1rem;
+    font-weight: 500;
     margin-left: 150px; /* spacing from logo */
     white-space: nowrap; /* prevent wrapping */
     transition: font-size 0.3s ease, margin-left 0.3s ease; /* smooth resize */
 }
 
-/* ============================================
-   Media Queries for Responsiveness
-   ============================================ */
+/* Media Queries for Responsiveness */
 
 /* Large screens */
 @media (max-width: 1200px) {
@@ -87,10 +81,10 @@
 /* Tablets / small screens */
 @media (max-width: 768px) {
     .main-header {
-        flex-direction: column; /* stack logo and text vertically */
+        flex-direction: column;
         justify-content: center;
         height: auto; /* auto-adjust height */
-        padding: 1rem 2%; /* add padding */
+        padding: 1rem 2%;
     }
     .logo-container {
         width: auto;
@@ -102,9 +96,9 @@
     }
     .header-content {
         font-size: 2rem;
-        margin-left: 0; /* remove left margin */
-        margin-top: 0.5rem; /* spacing from logo */
-        text-align: center; /* center text */
+        margin-left: 0;
+        margin-top: 0.5rem;
+        text-align: center;
     }
 }
 
@@ -115,6 +109,6 @@
         padding: 8px;
     }
     .header-content {
-        font-size: 1.8rem; /* smaller font for mobile */
+        font-size: 1.8rem;
     }
 }

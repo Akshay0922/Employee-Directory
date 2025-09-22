@@ -3,11 +3,11 @@
  * Displays employee information with a shadow and rounded corners.
  */
 .employee-card {
-  border: 1px solid #e1e1e1; /* light gray border around card */
-  padding: 22px; /* internal spacing inside the card */
-  border-radius: 11px; /* rounded corners */
-  background: #ffffff; /* white background */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* subtle shadow for depth */
+  border: 1px solid #e1e1e1;
+  padding: 22px;
+  border-radius: 11px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* shadow for depth */
   display: flex; /* flex layout for vertical alignment */
   flex-direction: column; /* stack child elements vertically */
   align-items: center;
@@ -43,9 +43,9 @@
 .employee-card h2 {
   margin: 0; /* remove default margin */
   margin-bottom: 11px; /* space below heading */
-  font-size: 18px; /* heading size */
-  font-weight: 700; /* bold font */
-  color: #330968; /* primary purple color */
+  font-size: 18px;
+  font-weight: 700;
+  color: #330968;
 }
 
 /**
@@ -55,8 +55,8 @@
 .employee-card p {
   margin: 0; /* remove default margin */
   margin-bottom: 6px; /* space below paragraph */
-  font-size: 14px; /* paragraph font size */
-  color: #6c757d; /* muted gray color */
+  font-size: 14px;
+  color: #6c757d;
 }
 
 /**

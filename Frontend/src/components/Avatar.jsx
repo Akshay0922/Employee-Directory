@@ -6,6 +6,7 @@ import '../assets/styles/avatar.css';
  *
  * @param {string} name - Person's name
  */
+
 const Avatar = ({ name }) => {
     // First letter of name in uppercase
     const initial = name ? name[0].toUpperCase() : "?";

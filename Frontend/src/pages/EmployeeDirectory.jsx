@@ -26,6 +26,7 @@ import '../assets/styles/styles.css';
  *
  * @component
  */
+
 const EmployeeDirectory = () => {
     /** State: All employees (fetched from localStorage on mount) */
     const [employees, setEmployees] = useState(getEmployees());
@@ -54,6 +55,7 @@ const EmployeeDirectory = () => {
      *
      * @param {Object} employee - Employee data from form.
      */
+
     const handleSave = (employee) => {
         if (selectedEmployee) {
             // Update existing employee
@@ -79,6 +81,7 @@ const EmployeeDirectory = () => {
      *
      * @param {Object} employee - Employee object to edit.
      */
+
     const handleEdit = (employee) => {
         setSelectedEmployee(employee);
         setIsFormVisible(true); // Always show form when editing
@@ -100,6 +103,7 @@ const EmployeeDirectory = () => {
      *
      * @param {string|number} id - Employee ID to delete.
      */
+
     const handleDelete = (id) => {
         setEmployees(deleteEmployee(id));
         toast.info("Employee deleted.");
@@ -109,6 +113,7 @@ const EmployeeDirectory = () => {
      * Filters employees based on current search term.
      * - Matches by name or department (case-insensitive).
      */
+    
     const filteredEmployees = employees.filter(
         (emp) =>
             emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

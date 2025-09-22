@@ -4,24 +4,22 @@
  * Flex layout centers content both vertically and horizontally.
  */
 .avatar {
-    width: 50px;               /* default width */
-    height: 50px;              /* default height */
-    border-radius: 50%;        /* make it perfectly circular */
-    margin-bottom: 11px;       /* space below avatar */
-    display: flex;             /* flex layout */
-    align-items: center;       /* center vertically */
-    justify-content: center;   /* center horizontally */
-    color: white;              /* text color for initials */
-    font-weight: bold;         /* bold initials */
-    font-size: 18px;           /* readable font size */
-    flex-shrink: 0;            /* prevent shrinking in flex containers */
-    background-color: #330968; /* default background color */
-    transition: all 0.3s ease; /* smooth transitions */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 11px;/* space below avatar */
+    display: flex;/* flex layout */
+    align-items: center;/* center vertically */
+    justify-content: center;/* center horizontally */
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    flex-shrink: 0;/* prevent shrinking in flex containers */
+    background-color: #330968;
+    transition: all 0.3s ease;/* smooth transitions */
 }
 
-/* ===========================
-   Responsive Media Queries
-   =========================== */
+/*Responsive Media Queries*/
 
 /* Tablets */
 @media (max-width: 1024px) {
